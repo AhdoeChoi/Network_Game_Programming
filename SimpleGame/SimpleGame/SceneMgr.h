@@ -16,27 +16,22 @@ class Objects;
 class SceneMgr
 {
 private:
-	Objects *m_objects[MAX_OBJECTS_COUNT];
-	Objects *m_bullets[MAX_BULLET_COUNT];
-	Objects *m_arrows[MAX_OBJECTS_COUNT][MAX_ARROW_COUNT];
-	int m_currentCount;
-	int m_currentbullet;
-	Renderer *m_renderer;
+	Renderer			*m_renderer;
 
-	int building_image;
-	float m_bullet_timer;
-	DWORD m_time_a, m_time_b;
-	float m_deltime;
+private:
+	Building			*m_pPlayer;
+	Building			*m_pEnemy;
+
 public:
 	SceneMgr(int x, int y);
-
 	~SceneMgr();
-
-	void Collion(); // 오브잭트간의 충돌 체크를 해주는 부분 -> 다른 오브잭트의 사각형 충돌박스를 기준으로 검사 size값과 x, y 좌표 사용
-
-	void Update(); // 오브잭트를 update 해주는 함수 (Renderer 포함)
-
-	void AddObject(float x, float y, float z); // 추가할 오브잭트(속도는 -10~10사이의 랜덤값으로 설정해놓음)
-
-	void CreatBullet();
+	void				Update(DWORD elapsedTime); // 오브잭트를 update 해주는 함수 (Renderer 포함)
+	void				Render();
+public: 
+	//서버를 위한 함수부분
+	void				SetOpponentData(Building *enemy) { m_pEnemy = enemy; } // 이함수를 실행하면 적 클라에서 받아온 enemy가 채워지면서 이 enemy를 그리면 됨
+	void				BuildObject();	// 처음 배치 어떻게 할 것인지, 이 함수 종료하면 데이터 송수신 시작
+public:
+	bool				IsCollide(Bullet & bullet, Building & building);
+	void				Animate(); //충돌검사 , 매 프레임마다 업데이트된 내용을 처리하는 부분
 };

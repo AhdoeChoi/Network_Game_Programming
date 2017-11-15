@@ -24,6 +24,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SimpleGame</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <ProjectName>넷겜플 텀프</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -155,6 +156,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameFrameWork.h" />
     <ClInclude Include="LoadPng.h" />
     <ClInclude Include="object.h" />
     <ClInclude Include="Renderer.h" />
@@ -163,6 +165,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameFrameWork.cpp" />
     <ClCompile Include="LoadPng.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="Renderer.cpp" />
