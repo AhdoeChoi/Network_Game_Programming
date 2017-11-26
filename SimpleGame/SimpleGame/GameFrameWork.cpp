@@ -10,7 +10,7 @@ GameFrameWork::GameFrameWork()
 	// 대기방을 위한 코드로 채워야함
 
 
-	///////////////////// 클라끼리의 송수신
+	///////////////////// 클라끼리의 송수신하기 위한 소켓 초기화만함
 
 	int retval;
 
@@ -20,7 +20,7 @@ GameFrameWork::GameFrameWork()
 		return;
 
 	// socket()
-	SOCKET listen_sock = socket(AF_INET, SOCK_STREAM, 0);
+	listen_sock = socket(AF_INET, SOCK_STREAM, 0);
 	if (listen_sock == INVALID_SOCKET) err_quit("socket()");
 
 	// bind()
@@ -30,7 +30,6 @@ GameFrameWork::GameFrameWork()
 	serveraddr.sin_addr.s_addr = htonl(INADDR_ANY);
 	serveraddr.sin_port = htons(SERVERPORT);
 	retval = bind(listen_sock, (SOCKADDR *)&serveraddr, sizeof(serveraddr));
-	//bind()에 첫번째 인자 listen_sock은 클라이언트 접속을 수용할 목적으로 만든 소켓으로, 지역 IP 주소와 지역 포트번호가 아직 결정되지 않은 상태임
 
 	if (retval == SOCKET_ERROR) err_quit("bind()");
 
@@ -41,52 +40,28 @@ GameFrameWork::GameFrameWork()
 		err_quit("listen()");
 	}
 	// 데이터 통신에 사용할 변수
-	client_socket;
-	SOCKADDR_IN clientaddr;
+
 	int addrlen;
 
-
-
-
-
-	while (1) {
-		// accept()
-		addrlen = sizeof(clientaddr);
-		client_socket = accept(listen_sock, (SOCKADDR *)&clientaddr /*접속한 클라이언트의 주소정보로 채워짐*/, &addrlen);
-		if (client_socket == INVALID_SOCKET) {
-			err_display("accept()");
-			break;
-		}
-
-		// 접속한 클라이언트 정보 출력
-		cout << "연걸" << endl;
-
-		// 데이터 송수신 시작
-
-		m_pScene->BuildObject(); //처음 배치 어떻게 할것인지, 배치 끝나면 데이터 송수신 시작
-		
-
-		while (1) {
-			//RecvFromOpponent(); // 상대방 정보 받아와
-			//SendToOpponent(); // 내정보 상대방에게 보내
-
-			//m_pScene->Update(); // 받아온 상대방 정보로 Scene을 업데이트
-			//m_pScene->Render(); // Update된 정보를 그려
-
-
-		}
-
-		// closesocket()
-		closesocket(client_socket);
-		/*printf("[TCP 서버] 클라이언트 종료: IP 주소=%s, 포트 번호=%d\n",
-			inet_ntoa(clientaddr.sin_addr), ntohs(clientaddr.sin_port));*/
+	// accept() 이부분 while문 돌면서 멀티클라이언트 처리하게 바꿔야함
+	addrlen = sizeof(clientaddr);
+	client_socket = accept(listen_sock, (SOCKADDR *)&clientaddr /*접속한 클라이언트의 주소정보로 채워짐*/, &addrlen);
+	if (client_socket == INVALID_SOCKET)
+	{
+		err_display("accept()");
+		return;
 	}
 
-	// closesocket()
-	closesocket(listen_sock);
+	// 접속한 클라이언트 정보 출력
+	cout << "연걸" << endl;
 
-	// 윈속 종료
-	WSACleanup();
+	
+
+	//// closesocket()
+	//closesocket(listen_sock);
+
+	//// 윈속 종료
+	//WSACleanup();
 
 
 }
@@ -117,7 +92,7 @@ int	GameFrameWork::RecvFromOpponent(SOCKET socket, Building * building, int len,
 	//=============================
 
 
-
+	
 	//	상대클라이언트 (적) 의 정보를 받아옴
 	
 
@@ -130,6 +105,22 @@ int	GameFrameWork::RecvFromOpponent(SOCKET socket, Building * building, int len,
 
 }
 
+void GameFrameWork::ServerRunning()
+{
+	// 데이터 송수신 시작
+
+
+	//RecvFromOpponent(); // 상대방 정보 받아와
+	RecvFromOpponent(client_socket, m_pEnemy, sizeof(m_pEnemy), 0);
+	//SendToOpponent()
+
+
+}
+
+
+
+
+//---------------------------------------------------------------------------------
 void GameFrameWork::err_quit(char * msg)
 {
 
@@ -166,3 +157,11 @@ int GameFrameWork::recvn(SOCKET s, char * buf, int len, int flags)
 	return (len - left);
 
 }
+
+
+void GameFrameWork::CloseSocket()
+{
+	closesocket(client_socket);
+	WSACleanup();
+}
+

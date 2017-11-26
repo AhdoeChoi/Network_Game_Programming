@@ -33,17 +33,27 @@ void RenderScene(void)
 	glClearColor(0.0f, 0.3f, 0.3f, 1.0f);
 
 
-	//===============================================
-
-	gameFrameWork->Render();
-	gameFrameWork->Update(elapsedTime);
 
 	//===============================================
 
-
+	gameFrameWork->ServerRunning();
 	//send & recv 반복
 	//gameFrameWork->RecvFromOpponent(); // enemy정보를 씬에 넘겨줘
 	//gameFrameWork->SendToOpponent(); // 상대클라이언트에 내 정보를 보내줘
+
+
+	//===============================================
+
+	//받아온 정보를 업데이트하고 그린다.
+
+	gameFrameWork->Update(elapsedTime);
+	gameFrameWork->Render();
+	
+
+	//===============================================
+
+
+
 
 
 	glutSwapBuffers();
@@ -104,7 +114,8 @@ int main(int argc, char **argv)
 
 	gameFrameWork->m_pScene = g_SceneMgr;
 
-	gameFrameWork->m_pScene->BuildObject(); //배치 끝나면 송수신 시작
+
+	gameFrameWork->m_pScene->BuildObject();
 	//////////////////////////////////////
 
 
@@ -130,6 +141,8 @@ int main(int argc, char **argv)
 
 
 	glutMainLoop();
+
+	gameFrameWork->CloseSocket();
 
 	delete g_SceneMgr;
 	delete gameFrameWork;
