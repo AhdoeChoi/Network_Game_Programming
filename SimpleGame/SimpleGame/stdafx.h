@@ -9,6 +9,17 @@
 
 #pragma comment(lib, "ws2_32")
 
+using namespace std;
+
+////////// const define은 여기에
+#define SERVERPORT 9000
+
+
+
+
+
+
+////////// 구조체 선언은 여기에 
 
 typedef struct pos
 {

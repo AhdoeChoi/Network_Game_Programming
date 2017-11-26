@@ -19,6 +19,9 @@ public:
 	int				RecvFromOpponent(SOCKET socket, Building * building, int len, int flag); //enemy정보를 받아옴
 
 	void			SetOpponentData() { m_pScene->SetOpponentData(m_pEnemy); }
+	void			err_quit(char *msg);
+	void			err_display(char *msg);
+	int				recvn(SOCKET s, char *buf, int len, int flags);
 
 public:
 	GameFrameWork();

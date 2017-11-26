@@ -57,7 +57,7 @@ bool SceneMgr::IsCollide(Bullet & bullet, Building & building)
 
 void SceneMgr::BuildObject()
 {
-
+	//배치하는 로직 필요 (마우스클릭하고)
 }
 void SceneMgr::Animate()
 {

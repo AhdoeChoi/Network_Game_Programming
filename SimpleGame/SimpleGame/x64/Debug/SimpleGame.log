@@ -1,7 +1,0 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(387,5): warning MSB8028: 중간 디렉터리(x64\Debug\)에 다른 프로젝트(SimpleGame.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
-  건너뛰고 있습니다... (관련된 변경 내용 없음)
-  object.cpp
-  SimpleGame.cpp
-  GameFrameWork.cpp
-  SimpleGame.vcxproj -> C:\Users\ChoiAhDoe\Desktop\Network_Game_Programming\SimpleGame\x64\Debug\넷겜플 텀프.exe
-  SimpleGame.vcxproj -> C:\Users\ChoiAhDoe\Desktop\Network_Game_Programming\SimpleGame\x64\Debug\넷겜플 텀프.pdb (Partial PDB)
