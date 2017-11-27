@@ -15,7 +15,7 @@ class Objects;
 
 class SceneMgr
 {
-private:
+public:
 	Renderer			*m_renderer;
 
 private:
