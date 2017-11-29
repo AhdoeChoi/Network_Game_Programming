@@ -42,7 +42,7 @@ void SceneMgr::Update(DWORD elapsedTime)
 
 	/*적 업데이트*/
 
-	m_pEnemyClass->Update(m_pEnemy, elapsedTime);
+	m_pEnemyClass->Update(m_Enemy, elapsedTime);
 }
 
 void SceneMgr::Render()
@@ -83,9 +83,9 @@ bool SceneMgr::IsCollide(Bullet & bullet, Building & building)
 	//bullet과 building의 충돌 체크
 }
 
-void SceneMgr::SetOpponentData(Building * enemy)
+void SceneMgr::SetOpponentData(Building enemy)
 {
-	 m_pEnemy = enemy; 
+	 m_Enemy = enemy; 
 }
 
 void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish)

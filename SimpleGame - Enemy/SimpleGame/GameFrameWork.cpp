@@ -53,7 +53,7 @@ GameFrameWork::~GameFrameWork()
 
 }
 
-int	GameFrameWork::SendToOpponent(SOCKET *socket, Building * building, int len, int flag)
+int	GameFrameWork::SendToOpponent(SOCKET *socket, Building building, int len, int flag)
 {
 
 	int retval = 0;
@@ -62,7 +62,7 @@ int	GameFrameWork::SendToOpponent(SOCKET *socket, Building * building, int len, 
 	//	내 정보를 상대 클라이언트에게 넘겨줌
 
 
-	retval = send(*socket, (char*)building, len, 0);
+	retval = send(*socket, (char*)&building, len, 0);
 	if (retval == SOCKET_ERROR) 
 	{
 		err_display("send()");
@@ -75,7 +75,7 @@ int	GameFrameWork::SendToOpponent(SOCKET *socket, Building * building, int len, 
 
 
 }
-int	GameFrameWork::RecvFromOpponent(SOCKET *socket, Building * building, int len, int flag)
+int	GameFrameWork::RecvFromOpponent(SOCKET *socket, Building building, int len, int flag)
 {
 	int retval = 0;
 
@@ -93,9 +93,9 @@ int	GameFrameWork::RecvFromOpponent(SOCKET *socket, Building * building, int len
 	}
 	//=============================
 
-	m_pEnemy = building; // 받아온 정보를 씬에 넘겨줄 enemy
+	m_Enemy = building; // 받아온 정보를 씬에 넘겨줄 enemy
 
-	m_pScene->SetOpponentData(m_pEnemy); //씬에 정보를 업데이트
+	m_pScene->SetOpponentData(m_Enemy); //씬에 정보를 업데이트
 
 	return 0;
 
@@ -105,8 +105,9 @@ void GameFrameWork::ServerRunning()
 {
 	// 데이터 송수신 시작
 
-	SendToOpponent(&client_socket, m_pPlayer, sizeof(m_pPlayer), 0); //내 정보 보내고
-	RecvFromOpponent(&client_socket, m_pEnemy, sizeof(m_pEnemy), 0); // 상대 정보 받아온다.
+	m_Player = (m_pScene->m_ppPlayerClass[0]->m_Building);
+	SendToOpponent(&client_socket, m_Player, sizeof(m_Player), 0); //내 정보 보내고
+	RecvFromOpponent(&client_socket, m_Enemy, sizeof(m_Enemy), 0); // 상대 정보 받아온다.
 	//SendToOpponent()
 
 

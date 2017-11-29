@@ -21,8 +21,8 @@ public:
 	Renderer			*m_renderer;
 
 public:
-	Building			*m_pPlayer;
-	Building			*m_pEnemy;
+	Building			m_Player;
+	Building			m_Enemy;
 
 	Objects				*m_pEnemyClass;
 
@@ -35,7 +35,7 @@ public:
 	void				Render();
 public: 
 	//서버를 위한 함수부분
-	void				SetOpponentData(Building *enemy); // 이함수를 실행하면 적 클라에서 받아온 enemy가 채워지면서 이 enemy를 그리면 됨
+	void				SetOpponentData(Building enemy); // 이함수를 실행하면 적 클라에서 받아온 enemy가 채워지면서 이 enemy를 그리면 됨
 	void				BuildObject(int xpos, bool * BuildObjectFinish);	// 처음 배치 어떻게 할 것인지, 이 함수 종료하면 데이터 송수신 시작
 public:
 	bool				IsCollide(Bullet & bullet, Building & building);
