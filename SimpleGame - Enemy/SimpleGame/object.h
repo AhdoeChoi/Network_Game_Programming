@@ -61,7 +61,7 @@ public:
 
 	void Render();
 
-	void Update(Building pBuilding , float time);
+	void Update(Buildings pBuilding , float time);
 
 	void Setvector(float vectorX, float vectorY, float vectorZ);
 

@@ -73,7 +73,7 @@ GameFrameWork::~GameFrameWork()
 
 }
 
-int	GameFrameWork::SendToOpponent(SOCKET *socket, Building building, int len, int flag)
+int	GameFrameWork::SendToOpponent(SOCKET *socket, Buildings building, int len, int flag)
 {
 
 	int retval = 0;
@@ -95,7 +95,7 @@ int	GameFrameWork::SendToOpponent(SOCKET *socket, Building building, int len, in
 
 	return 0;
 }
-int	GameFrameWork::RecvFromOpponent(SOCKET *socket, Building building, int len, int flag)
+int	GameFrameWork::RecvFromOpponent(SOCKET *socket, Buildings building, int len, int flag)
 {
 	int retval = 0;
 	

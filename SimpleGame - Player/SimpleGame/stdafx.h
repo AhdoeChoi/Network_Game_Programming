@@ -61,3 +61,7 @@ typedef struct building
 	Bullet		Bullet;
 }Building;
 
+typedef struct buildings
+{
+	building	building[3];
+}Buildings;

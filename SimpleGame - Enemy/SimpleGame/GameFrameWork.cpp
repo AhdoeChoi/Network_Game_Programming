@@ -53,7 +53,7 @@ GameFrameWork::~GameFrameWork()
 
 }
 
-int	GameFrameWork::SendToOpponent(SOCKET *socket, Building building, int len, int flag)
+int	GameFrameWork::SendToOpponent(SOCKET *socket, Buildings building, int len, int flag)
 {
 
 	int retval = 0;
@@ -75,7 +75,7 @@ int	GameFrameWork::SendToOpponent(SOCKET *socket, Building building, int len, in
 
 
 }
-int	GameFrameWork::RecvFromOpponent(SOCKET *socket, Building building, int len, int flag)
+int	GameFrameWork::RecvFromOpponent(SOCKET *socket, Buildings building, int len, int flag)
 {
 	int retval = 0;
 
@@ -105,7 +105,7 @@ void GameFrameWork::ServerRunning()
 {
 	// 데이터 송수신 시작
 
-	m_Player = (m_pScene->m_ppPlayerClass[0]->m_Building);
+	m_Player.building[0] = (m_pScene->m_ppPlayerClass[0]->m_Building);
 	SendToOpponent(&client_socket, m_Player, sizeof(m_Player), 0); //내 정보 보내고
 	RecvFromOpponent(&client_socket, m_Enemy, sizeof(m_Enemy), 0); // 상대 정보 받아온다.
 	//SendToOpponent()

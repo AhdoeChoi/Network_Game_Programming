@@ -55,7 +55,7 @@ void Objects::Render()
 
 }
 
-void Objects::Update(Building pBuilding ,float time)
+void Objects::Update(Buildings pBuilding ,float time)
 {
 
 	//m_Building = pBuilding;

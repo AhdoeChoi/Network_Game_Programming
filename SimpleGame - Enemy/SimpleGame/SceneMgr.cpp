@@ -83,7 +83,7 @@ bool SceneMgr::IsCollide(Bullet & bullet, Building & building)
 	//bullet과 building의 충돌 체크
 }
 
-void SceneMgr::SetOpponentData(Building enemy)
+void SceneMgr::SetOpponentData(Buildings enemy)
 {
 	 m_Enemy = enemy; 
 }
