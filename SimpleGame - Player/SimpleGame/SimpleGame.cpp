@@ -24,6 +24,8 @@ bool g_left_mouse = false;
 
 bool bBuildObjectFinish = false;
 
+int xpos = -300;
+
 void RenderScene(void)
 {
 
@@ -34,8 +36,8 @@ void RenderScene(void)
 
 	if (!bBuildObjectFinish) //빌드 오브젝트가 끝나면 서버 동작
 	{
-		gameFrameWork->m_pScene->BuildObject();
-		gameFrameWork->m_pScene->m_renderer->DrawSolidRect(0, 0, 0, 4, 1, 0, 1, 1);
+		gameFrameWork->m_pScene->BuildObject(xpos);
+		xpos = -300;
 	}
 	else
 	{
@@ -82,7 +84,7 @@ void MouseInput(int button, int state, int x, int y)
 		g_left_mouse = true;
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
 	{
-	
+		xpos = x - 250;
 	}
 	RenderScene();
 }

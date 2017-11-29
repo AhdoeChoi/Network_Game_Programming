@@ -49,8 +49,8 @@ struct float4
 class Objects
 {
 public:
-	Renderer			*m_renderer;
-	Building			*m_pBuilding;
+	Renderer			*m_renderer = NULL;
+	Building			m_Building;
 
 	float ArrowCooltime;
 

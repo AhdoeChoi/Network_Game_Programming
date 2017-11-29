@@ -15,6 +15,8 @@ class Objects;
 
 class SceneMgr
 {
+private:
+	int					m_iSetPlayerIndex;
 public:
 	Renderer			*m_renderer;
 
@@ -22,8 +24,9 @@ private:
 	Building			*m_pPlayer;
 	Building			*m_pEnemy;
 
-	Objects				*m_pPlayerClass;
 	Objects				*m_pEnemyClass;
+
+	Objects				**m_ppPlayerClass;
 
 public:
 	SceneMgr(int x, int y);
@@ -33,7 +36,7 @@ public:
 public: 
 	//서버를 위한 함수부분
 	void				SetOpponentData(Building *enemy); // 이함수를 실행하면 적 클라에서 받아온 enemy가 채워지면서 이 enemy를 그리면 됨
-	void				BuildObject();	// 처음 배치 어떻게 할 것인지, 이 함수 종료하면 데이터 송수신 시작
+	void				BuildObject(int xpos);	// 처음 배치 어떻게 할 것인지, 이 함수 종료하면 데이터 송수신 시작
 public:
 	bool				IsCollide(Bullet & bullet, Building & building);
 	void				Animate(); //충돌검사 , 매 프레임마다 업데이트된 내용을 처리하는 부분

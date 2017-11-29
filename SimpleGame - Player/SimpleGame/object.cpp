@@ -12,12 +12,12 @@
 
 Objects::Objects()
 {
+
 }
 
 Objects::Objects(Building * pBuilding , Renderer * pRenderer)
 {
-	m_pBuilding = pBuilding;
-	m_renderer = pRenderer;
+
 
 
 }
@@ -40,25 +40,25 @@ void Objects::Render()
 			g_Renderer.DrawSolidRect(m_pos.x, m_pos.y, m_pos.z, size, color.x, color.y, color.z, color.w);
 	}*/
 
-	if (m_pBuilding->pInfo->istate == TOPA)
-	{
+	//if (m_Building->pInfo->istate == TOPA)
+	//{
 
-	}
-	else if (m_pBuilding->pInfo->istate == TOPB)
-	{
+	//}
+	//else if (m_pBuilding->pInfo->istate == TOPB)
+	//{
 
-	}
-	else if (m_pBuilding->pInfo->istate == TOPC)
-	{
+	//}
+	//else if (m_pBuilding->pInfo->istate == TOPC)
+	//{
 
-	}
+	//}
 
 }
 
 void Objects::Update(Building * pBuilding ,float time)
 {
 
-	m_pBuilding = pBuilding;
+	//m_Building = pBuilding;
 
 	//if (m_active)
 	//{

@@ -45,7 +45,7 @@ GameFrameWork::GameFrameWork()
 
 	// accept() 이부분 while문 돌면서 멀티클라이언트 처리하게 바꿔야함
 	addrlen = sizeof(clientaddr);
-	client_socket = accept(listen_sock, (SOCKADDR *)&clientaddr /*접속한 클라이언트의 주소정보로 채워짐*/, &addrlen);
+	//client_socket = accept(listen_sock, (SOCKADDR *)&clientaddr /*접속한 클라이언트의 주소정보로 채워짐*/, &addrlen);
 	if (client_socket == INVALID_SOCKET)
 	{
 		err_display("accept()");
