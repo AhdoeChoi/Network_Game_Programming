@@ -17,6 +17,7 @@ class SceneMgr
 {
 private:
 	int					m_iSetPlayerIndex;
+	bool				m_bOverlap[3];
 public:
 	Renderer			*m_renderer;
 

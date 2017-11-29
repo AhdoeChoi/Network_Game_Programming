@@ -8,6 +8,12 @@ SceneMgr::SceneMgr(int x, int y)
 	m_iSetPlayerIndex = 0;
 
 	m_ppPlayerClass = NULL;
+
+
+	for (int i = 0; i < 3; ++i)
+	{
+		m_bOverlap[i] = false;
+	}
 }
 
 SceneMgr::~SceneMgr()
@@ -90,18 +96,32 @@ void SceneMgr::SetOpponentData(Buildings enemy)
 
 void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish)
 {
-	//cout << xpos << endl;
 	if (xpos < -80 && xpos > -250)
 	{
+		if (m_bOverlap[0])
+		{
+			return;
+		}
 		xpos = -150;
+		m_bOverlap[0] = true;
 	}
 	else if (xpos > -80 && xpos < 80)
 	{
+		if (m_bOverlap[1])
+		{
+			return;
+		}
 		xpos = 0;
+		m_bOverlap[1] = true;
 	}
 	else if (xpos > 80)
 	{
+		if (m_bOverlap[2])
+		{
+			return;
+		}
 		xpos = 150;
+		m_bOverlap[2] = true;
 	}
 
 

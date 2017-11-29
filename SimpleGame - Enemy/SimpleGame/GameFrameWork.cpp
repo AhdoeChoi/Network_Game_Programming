@@ -105,7 +105,11 @@ void GameFrameWork::ServerRunning()
 {
 	// 데이터 송수신 시작
 
-	m_Player.building[0] = (m_pScene->m_ppPlayerClass[0]->m_Building);
+	for (int i = 0; i < 3; ++i)
+	{
+		m_Player.building[i] = (m_pScene->m_ppPlayerClass[i]->m_Building);
+	}
+
 	SendToOpponent(&client_socket, m_Player, sizeof(m_Player), 0); //내 정보 보내고
 	RecvFromOpponent(&client_socket, m_Enemy, sizeof(m_Enemy), 0); // 상대 정보 받아온다.
 	//SendToOpponent()

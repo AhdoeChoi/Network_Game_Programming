@@ -62,22 +62,13 @@ public:
 	void Render();
 
 	void Update(Buildings pBuilding , float time);
-
 	void Setvector(float vectorX, float vectorY, float vectorZ);
-
 	void Setposition(float x, float y, float z);
-
 	void SetColor(float r, float g, float b, float a);
-
 	void ColiderCheck(float time);
-
 	void ActiveOn(bool active);
-
 	bool collision(float3 target, float scale);
-
 	float GetCooltime();
-
 	void SetCooltime();
-
 	void SetStandardColor();
 };
