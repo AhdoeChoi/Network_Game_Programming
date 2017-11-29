@@ -36,7 +36,7 @@ void RenderScene(void)
 
 	if (!bBuildObjectFinish) //빌드 오브젝트가 끝나면 서버 동작
 	{
-		gameFrameWork->m_pScene->BuildObject(xpos);
+		gameFrameWork->m_pScene->BuildObject(xpos, &bBuildObjectFinish);
 		xpos = -300;
 	}
 	else
@@ -44,18 +44,11 @@ void RenderScene(void)
 		DWORD currTime = timeGetTime();
 		DWORD elapsedTime = currTime - CurrentTime; //한프레임 그리는데 걸리는 시간임
 
-
-
-
-
 		//=============================================== 서버데이터 주고받어
-
 		gameFrameWork->ServerRunning();
 		//send & recv 반복
 		//gameFrameWork->RecvFromOpponent(); // enemy정보를 씬에 넘겨줘
-		//gameFrameWork->SendToOpponent(); // 상대클라이언트에 내 정보를 보내줘
-
-
+		//gameFrameWork->SendToOpponent(); // 상대클라이언트에 내 정보를 보내
 		//===============================================
 
 		//받아온 정보를 업데이트하고 그린다.

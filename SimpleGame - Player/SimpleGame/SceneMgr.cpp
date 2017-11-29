@@ -87,7 +87,7 @@ void SceneMgr::SetOpponentData(Building * enemy)
 	 m_pEnemy = enemy; 
 }
 
-void SceneMgr::BuildObject(int xpos)
+void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish)
 {
 	//cout << xpos << endl;
 	if (xpos < -80 && xpos > -250)
@@ -130,7 +130,14 @@ void SceneMgr::BuildObject(int xpos)
 		m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -40, 0, 50, 1, 0, 0, 1);
 	}
 
+	if (m_iSetPlayerIndex == 3) // 배치 완료
+	{
+		*BuildObjectFinish = true;
+	}
 
+
+	
+	//cout << *BuildObjectFinish << endl;
 
 }
 void SceneMgr::Animate()
