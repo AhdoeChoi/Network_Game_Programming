@@ -1,0 +1,27 @@
+﻿  stdafx.cpp
+  GameFrameWork.cpp
+c:\users\choiahdoe\desktop\깃 데스크탑 넷겜플 텀프\simplegame - enemy\simplegame\GameFrameWork.h(16): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+GameFrameWork.cpp(30): error C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\um\WinSock2.h(1830): note: 'inet_addr' 선언을 참조하십시오.
+GameFrameWork.cpp(15): warning C4101: 'retval' :참조되지 않은 지역 변수입니다.
+  LoadPng.cpp
+LoadPng.cpp(800): warning C4334: '<<': 32비트 시프트의 결과가 암시적으로 64비트로 변환됩니다. 64비트 시프트를 사용하시겠습니까?
+LoadPng.cpp(1462): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+LoadPng.cpp(1466): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+LoadPng.cpp(1538): warning C4267: '=': 'size_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+LoadPng.cpp(3483): warning C4334: '<<': 32비트 시프트의 결과가 암시적으로 64비트로 변환됩니다. 64비트 시프트를 사용하시겠습니까?
+LoadPng.cpp(3497): warning C4267: '인수': 'size_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+LoadPng.cpp(4338): warning C4267: '=': 'size_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+LoadPng.cpp(4386): warning C4267: '=': 'size_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+LoadPng.cpp(4466): warning C4267: '=': 'size_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+LoadPng.cpp(5409): warning C4267: '초기화 중': 'size_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  object.cpp
+  Renderer.cpp
+Renderer.cpp(110): warning C4267: '=': 'size_t'에서 'GLint'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Renderer.cpp(381): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  SceneMgr.cpp
+SceneMgr.cpp(44): warning C4244: '인수': 'DWORD'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+SceneMgr.cpp(120): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SimpleGame.cpp
+c:\users\choiahdoe\desktop\깃 데스크탑 넷겜플 텀프\simplegame - enemy\simplegame\GameFrameWork.h(16): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+SimpleGame.cpp(59): warning C4244: '인수': 'DWORD'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.

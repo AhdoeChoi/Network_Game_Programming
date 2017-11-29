@@ -40,7 +40,7 @@ typedef struct pos
 
 typedef struct player_info
 {
-	Pos			*pPos;
+	Pos			Pos;
 	int			ihp;
 	int			istate; //어떤 종류의 탑인지
 	int			isize;
@@ -48,21 +48,21 @@ typedef struct player_info
 
 typedef struct bullet
 {
-	Pos			*pVelocity;
-	Pos			*pPos;
+	Pos			Velocity;
+	Pos			Pos;
 	int			isize;
 }Bullet;
 
 typedef struct shield
 {
 	int			ihp;
-	Pos			*pPos;
+	Pos			Pos;
 }Shield;
 
 typedef struct building
 {
-	PInfo		*pInfo;
-	Shield		*pShield;
-	Bullet		*pBullet;
+	PInfo		Info;
+	Shield		Shield;
+	Bullet		Bullet;
 }Building;
 

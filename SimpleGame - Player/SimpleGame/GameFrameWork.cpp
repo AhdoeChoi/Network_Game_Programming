@@ -45,7 +45,7 @@ GameFrameWork::GameFrameWork()
 
 	// accept() 이부분 while문 돌면서 멀티클라이언트 처리하게 바꿔야함
 	addrlen = sizeof(clientaddr);
-	//client_socket = accept(listen_sock, (SOCKADDR *)&clientaddr /*접속한 클라이언트의 주소정보로 채워짐*/, &addrlen);
+	client_socket = accept(listen_sock, (SOCKADDR *)&clientaddr /*접속한 클라이언트의 주소정보로 채워짐*/, &addrlen);
 	if (client_socket == INVALID_SOCKET)
 	{
 		err_display("accept()");
@@ -123,6 +123,10 @@ int	GameFrameWork::RecvFromOpponent(SOCKET *socket, Building * building, int len
 void GameFrameWork::ServerRunning()
 {
 	// 데이터 송수신 시작
+
+	cout << m_pScene->m_ppPlayerClass[0]->m_Building.Info.Pos.fxpos << endl;
+	cout << m_pScene->m_ppPlayerClass[1]->m_Building.Info.Pos.fxpos << endl;
+	cout << m_pScene->m_ppPlayerClass[2]->m_Building.Info.Pos.fxpos << endl;
 
 
 	RecvFromOpponent(&client_socket, m_pEnemy, sizeof(m_pEnemy), 0);

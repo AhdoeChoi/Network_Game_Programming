@@ -20,7 +20,7 @@ private:
 public:
 	Renderer			*m_renderer;
 
-private:
+public:
 	Building			*m_pPlayer;
 	Building			*m_pEnemy;
 

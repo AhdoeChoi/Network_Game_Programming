@@ -30,7 +30,7 @@ GameFrameWork::GameFrameWork()
 	serveraddr.sin_addr.s_addr = inet_addr(SERVERIP);
 	serveraddr.sin_port = htons(SERVERPORT);
 	retval = connect(client_socket, (SOCKADDR *)&serveraddr, sizeof(serveraddr));
-	if (retval == SOCKET_ERROR) err_quit("connect()");
+	//if (retval == SOCKET_ERROR) err_quit("connect()");
 
 
 	cout << "¿¬°É" << endl;

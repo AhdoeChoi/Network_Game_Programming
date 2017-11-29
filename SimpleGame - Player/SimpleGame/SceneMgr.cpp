@@ -7,6 +7,8 @@ SceneMgr::SceneMgr(int x, int y)
 	m_renderer = new Renderer(x, y);
 	m_iSetPlayerIndex = 0;
 
+	m_ppPlayerClass = NULL;
+
 }
 
 SceneMgr::~SceneMgr()
@@ -118,6 +120,7 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish)
 		Objects * pNewObject = new Objects;
 
 		pNewObject->m_Building.Info.Pos.fxpos = xpos;
+		//여기를 좀더 자세히 채워야함
 
 
 		m_ppPlayerClass[m_iSetPlayerIndex] = pNewObject;

@@ -21,38 +21,50 @@ DWORD CurrentTime;
 
 
 bool g_left_mouse = false;
+bool bBuildObjectFinish = false;
+int xpos = -300;
+
+
 
 void RenderScene(void)
 {
-
-	DWORD currTime = timeGetTime();
-	DWORD elapsedTime = currTime - CurrentTime; //한프레임 그리는데 걸리는 시간임
-
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0f, 0.3f, 0.3f, 1.0f);
 
 
-
-	//=============================================== 서버데이터 주고받어
-
-	gameFrameWork->ServerRunning();
-	//send & recv 반복
-	//gameFrameWork->RecvFromOpponent(); // enemy정보를 씬에 넘겨줘
-	//gameFrameWork->SendToOpponent(); // 상대클라이언트에 내 정보를 보내줘
-
-
-	//===============================================
-
-	//받아온 정보를 업데이트하고 그린다.
-
-	gameFrameWork->Update(elapsedTime);
-	gameFrameWork->Render();
 	
 
-	//===============================================
+	
 
 
+	if (!bBuildObjectFinish) //빌드 오브젝트가 끝나면 서버 동작
+	{
+		gameFrameWork->m_pScene->BuildObject(xpos, &bBuildObjectFinish);
+		xpos = -300;
+	}
+	else
+	{
+		DWORD currTime = timeGetTime();
+		DWORD elapsedTime = currTime - CurrentTime; //한프레임 그리는데 걸리는 시간임
+
+													//=============================================== 서버데이터 주고받어
+		gameFrameWork->ServerRunning();
+		//send & recv 반복
+		//gameFrameWork->RecvFromOpponent(); // enemy정보를 씬에 넘겨줘
+		//gameFrameWork->SendToOpponent(); // 상대클라이언트에 내 정보를 보내
+		//===============================================
+
+		//받아온 정보를 업데이트하고 그린다.
+
+		gameFrameWork->Update(elapsedTime);
+		gameFrameWork->Render();
+
+
+		//===============================================
+
+
+
+	}
 
 
 
@@ -70,7 +82,7 @@ void MouseInput(int button, int state, int x, int y)
 		g_left_mouse = true;
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
 	{
-	
+		xpos = x - 250;
 	}
 	RenderScene();
 }
@@ -136,10 +148,6 @@ int main(int argc, char **argv)
 	glutKeyboardFunc(KeyInput);
 	glutMouseFunc(MouseInput);
 	glutSpecialFunc(SpecialKeyInput);
-
-	CurrentTime = timeGetTime();
-
-	gameFrameWork->m_pScene->BuildObject(); //빌딩배치
 
 	glutMainLoop();
 

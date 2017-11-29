@@ -144,7 +144,7 @@ int main(int argc, char **argv)
 	glutMouseFunc(MouseInput);
 	glutSpecialFunc(SpecialKeyInput);
 
-	CurrentTime = timeGetTime();
+	//CurrentTime = timeGetTime();
 
 
 	glutMainLoop();

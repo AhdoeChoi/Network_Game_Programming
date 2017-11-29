@@ -50,7 +50,7 @@ class Objects
 {
 public:
 	Renderer			*m_renderer;
-	Building			*m_pBuilding;
+	Building			m_Building;
 
 	float ArrowCooltime;
 

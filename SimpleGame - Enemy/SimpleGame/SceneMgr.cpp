@@ -5,12 +5,24 @@
 SceneMgr::SceneMgr(int x, int y)
 {
 	m_renderer = new Renderer(x, y);
+	m_iSetPlayerIndex = 0;
 
+	m_ppPlayerClass = NULL;
 }
 
 SceneMgr::~SceneMgr()
 {
+	if (m_ppPlayerClass)
+	{
+		for (int j = 0; j < m_iSetPlayerIndex; j++)
+			if (m_ppPlayerClass[j])
+			{
+				delete m_ppPlayerClass[j];
 
+			}
+		delete[] m_ppPlayerClass;
+
+	}
 }
 
 void SceneMgr::Update(DWORD elapsedTime)
@@ -23,7 +35,7 @@ void SceneMgr::Update(DWORD elapsedTime)
 
 
 	/*플레이어 업데이트*/
-	m_pPlayerClass->Update(m_pPlayer,elapsedTime);
+	//m_ppPlayerClass->Update(m_pPlayer,elapsedTime);
 
 
 	////////////////////////////
@@ -42,7 +54,7 @@ void SceneMgr::Render()
 	//2.내꺼 총알 그려
 
 
-	m_pPlayerClass->Render();
+	//m_ppPlayerClass->Render();
 
 
 
@@ -76,9 +88,54 @@ void SceneMgr::SetOpponentData(Building * enemy)
 	 m_pEnemy = enemy; 
 }
 
-void SceneMgr::BuildObject()
+void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish)
 {
+	//cout << xpos << endl;
+	if (xpos < -80 && xpos > -250)
+	{
+		xpos = -150;
+	}
+	else if (xpos > -80 && xpos < 80)
+	{
+		xpos = 0;
+	}
+	else if (xpos > 80)
+	{
+		xpos = 150;
+	}
+
+
+
 	//배치하는 로직 필요 (마우스클릭하고)
+
+	if (m_ppPlayerClass == NULL)
+	{
+		m_ppPlayerClass = new Objects*[3];
+	}
+
+	if (xpos > -250 && m_iSetPlayerIndex < 3)
+	{
+		//cout << xpos << endl;
+		Objects * pNewObject = new Objects;
+
+		pNewObject->m_Building.Info.Pos.fxpos = xpos;
+		//여기를 좀더 자세히 채워야함
+
+
+		m_ppPlayerClass[m_iSetPlayerIndex] = pNewObject;
+		m_iSetPlayerIndex++;
+
+	}
+
+	for (int i = 0; i < m_iSetPlayerIndex; ++i)
+	{
+		m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -40, 0, 50, 1, 0, 0, 1);
+	}
+
+	if (m_iSetPlayerIndex == 3) // 배치 완료
+	{
+		*BuildObjectFinish = true;
+	}
 }
 void SceneMgr::Animate()
 {
