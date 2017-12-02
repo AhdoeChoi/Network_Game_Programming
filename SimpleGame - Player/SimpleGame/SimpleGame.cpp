@@ -121,7 +121,7 @@ int main(int argc, char **argv)
 	//{
 	//	std::cout << "Renderer could not be initialized.. \n";
 	//}
-	g_SceneMgr = new SceneMgr(500, 500);
+	g_SceneMgr = new SceneMgr(500, 800);
 	gameFrameWork = new GameFrameWork;
 
 	gameFrameWork->m_pScene = g_SceneMgr;

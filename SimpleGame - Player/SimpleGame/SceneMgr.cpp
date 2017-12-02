@@ -95,9 +95,9 @@ void SceneMgr::Render()
 
 	for (int i = 0; i < 3; ++i)
 	{
-		m_renderer->DrawSolidRect(m_Enemy.building[i].Info.Pos.fxpos,
-			m_Enemy.building[i].Info.Pos.fypos + 100,
-			m_Enemy.building[i].Info.Pos.fzpos,
+		m_renderer->DrawSolidRect(-(m_Enemy.building[i].Info.Pos.fxpos),
+			-(m_Enemy.building[i].Info.Pos.fypos),
+			-(m_Enemy.building[i].Info.Pos.fzpos),
 			50,
 			1, 0, 1, 1
 		);
@@ -179,6 +179,7 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 		Objects * pNewObject = new Objects;
 
 		pNewObject->m_Building.Info.Pos.fxpos = xpos;
+		pNewObject->m_Building.Info.Pos.fypos = -200;
 		//여기를 좀더 자세히 채워야함
 //<<<<<<< HEAD
 		//pNewObject->m_Building.Bullet.
