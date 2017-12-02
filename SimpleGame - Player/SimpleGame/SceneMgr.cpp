@@ -2,6 +2,10 @@
 #include "SceneMgr.h"
 #include <random>
 
+SceneMgr::SceneMgr()
+{
+}
+
 SceneMgr::SceneMgr(int x, int y)
 {
 	m_renderer = new Renderer(x, y);
@@ -13,7 +17,7 @@ SceneMgr::SceneMgr(int x, int y)
 	{
 		m_bOverlap[i] = false;
 	}
-
+	memset(&m_Enemy, 0, sizeof(m_Enemy));
 }
 
 SceneMgr::~SceneMgr()
@@ -34,7 +38,10 @@ SceneMgr::~SceneMgr()
 void SceneMgr::Update(DWORD elapsedTime)
 {
 	////////////////////////////
-	
+	if (m_pEnemyClass == NULL)
+	{
+		m_pEnemyClass = new Objects;
+	}
 
 	//m_pPlayer를 채워줘야함(빌드오브젝트한걸로)
 
@@ -74,10 +81,19 @@ void SceneMgr::Render()
 
 	//적 클라이언트 정보 그려 m_pEnemy
 	
+	for (int i = 0; i < 3; ++i)
+	{
+		m_renderer->DrawSolidRect(m_Enemy.building[i].Info.Pos.fxpos,
+			m_Enemy.building[i].Info.Pos.fypos,
+			m_Enemy.building[i].Info.Pos.fzpos,
+			50,
+			0, 0, 1, 1
+		);
+	}
+	
 	//1. 적 빌딩 그려
 	//2. 적 총알 그려
 
-	m_pEnemyClass->Render();
 	//m_renderer->DrawSolidRect(m_pEnemy);
 
 }

@@ -51,17 +51,19 @@ class Objects
 public:
 	Renderer			*m_renderer = NULL;
 	Building			m_Building;
+	Buildings			m_Buildings;
 
+	Buildings			*m_pBuildings;
 	float ArrowCooltime;
 
 	Objects();
-	Objects(Building * pBuilding, Renderer * pRenderer);
+	Objects(Buildings * pBuilding, Renderer * pRenderer);
 
 	~Objects();
 
 	void Render();
 
-	void Update(Buildings pBuilding , float time);
+	void Update(Buildings buildings , float time);
 	void Setvector(float vectorX, float vectorY, float vectorZ);
 	void Setposition(float x, float y, float z);
 	void SetColor(float r, float g, float b, float a);

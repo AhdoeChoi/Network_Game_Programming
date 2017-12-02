@@ -57,7 +57,7 @@ void RenderScene(void)
 		//받아온 정보를 업데이트하고 그린다.
 
 		gameFrameWork->Update(elapsedTime);
-		gameFrameWork->Render();
+ 		gameFrameWork->Render();
 
 
 		//===============================================

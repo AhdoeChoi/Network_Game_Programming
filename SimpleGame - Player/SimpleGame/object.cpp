@@ -12,10 +12,15 @@
 
 Objects::Objects()
 {
+	::ZeroMemory(&m_Building, sizeof(Building));
+	::ZeroMemory(&m_Buildings, sizeof(Buildings));
+	m_renderer = NULL;
 
+	m_pBuildings = NULL;
+	 ArrowCooltime = 0;
 }
 
-Objects::Objects(Building * pBuilding , Renderer * pRenderer)
+Objects::Objects(Buildings * pBuildings , Renderer * pRenderer)
 {
 
 
@@ -55,8 +60,22 @@ void Objects::Render()
 
 }
 
-void Objects::Update(Buildings  pBuilding ,float time)
+void Objects::Update(Buildings  buildings ,float time)
 {
+	//if (m_pBuildings == NULL)
+	//{
+	//	m_pBuildings = new Buildings;
+	//}
+	//memset(&m_Buildings, 0, sizeof(m_Buildings));
+	//memcpy(&m_Buildings,&buildings,sizeof(m_Buildings));
+	
+	//cout << buildings.building[0].Info.Pos.fxpos << endl;
+	//m_Buildings.building[0].Info.Pos.fxpos = buildings.building[0].Info.Pos.fxpos;
+	m_pBuildings = &buildings;
+	cout << m_pBuildings->building[0].Info.Pos.fxpos << endl;
+	cout << m_pBuildings->building[1].Info.Pos.fxpos << endl;
+	cout << m_pBuildings->building[2].Info.Pos.fxpos << endl;
+
 
 	//m_Building = pBuilding;
 
