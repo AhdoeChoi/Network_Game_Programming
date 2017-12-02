@@ -53,7 +53,7 @@ public:
 	Building			m_Building;
 
 
-	Buildings			*m_pBuildings;
+	Buildings			*m_pBuildings = NULL;
 	float ArrowCooltime;
 
 	Objects();

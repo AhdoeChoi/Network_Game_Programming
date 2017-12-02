@@ -66,6 +66,16 @@ void SceneMgr::Render()
 
 	//³» Á¤º¸ ±×·Á m_pPlayer
 	//1.³»²¨ ºôµù ±×·Á
+	for (int i = 0; i < 3; ++i)
+	{
+		m_renderer->DrawSolidRect(m_Player.building[i].Info.Pos.fxpos,
+			m_Player.building[i].Info.Pos.fypos,
+			m_Player.building[i].Info.Pos.fzpos,
+			50,
+			1, 0, 0, 1
+		);
+	}
+
 	//2.³»²¨ ÃÑ¾Ë ±×·Á
 
 
@@ -86,7 +96,16 @@ void SceneMgr::Render()
 	//1. Àû ºôµù ±×·Á
 	//2. Àû ÃÑ¾Ë ±×·Á
 
-	m_pEnemyClass->Render();
+
+	for (int i = 0; i < 3; ++i)
+	{
+		m_renderer->DrawSolidRect(m_Enemy.building[i].Info.Pos.fxpos,
+			m_Enemy.building[i].Info.Pos.fypos + 100,
+			m_Enemy.building[i].Info.Pos.fzpos,
+			50,
+			1, 0, 1, 1
+		);
+	}
 	//m_renderer->DrawSolidRect(m_pEnemy);
 
 }

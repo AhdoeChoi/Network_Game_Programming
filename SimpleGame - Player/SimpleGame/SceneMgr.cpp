@@ -65,6 +65,15 @@ void SceneMgr::Render()
 
 	//내 정보 그려 m_pPlayer
 	//1.내꺼 빌딩 그려
+	for (int i = 0; i < 3; ++i)
+	{
+		m_renderer->DrawSolidRect(m_Player.building[i].Info.Pos.fxpos,
+			m_Player.building[i].Info.Pos.fypos,
+			m_Player.building[i].Info.Pos.fzpos,
+			50,
+			1, 0, 0, 1
+		);
+	}
 	//2.내꺼 총알 그려
 
 
@@ -82,13 +91,15 @@ void SceneMgr::Render()
 
 	//적 클라이언트 정보 그려 m_pEnemy
 	
+
+
 	for (int i = 0; i < 3; ++i)
 	{
 		m_renderer->DrawSolidRect(m_Enemy.building[i].Info.Pos.fxpos,
-			m_Enemy.building[i].Info.Pos.fypos,
+			m_Enemy.building[i].Info.Pos.fypos + 100,
 			m_Enemy.building[i].Info.Pos.fzpos,
 			50,
-			0, 0, 1, 1
+			1, 0, 1, 1
 		);
 	}
 	
@@ -158,7 +169,7 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish)
 
 		pNewObject->m_Building.Info.Pos.fxpos = xpos;
 		//여기를 좀더 자세히 채워야함
-
+		//pNewObject->m_Building.Bullet.
 
 		m_ppPlayerClass[m_iSetPlayerIndex] = pNewObject;
 		m_iSetPlayerIndex++;

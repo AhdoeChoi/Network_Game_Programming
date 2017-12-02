@@ -12,6 +12,12 @@
 
 Objects::Objects()
 {
+	::ZeroMemory(&m_Building, sizeof(Building));
+	m_pBuildings = NULL;
+	m_renderer = NULL;
+
+	m_pBuildings = NULL;
+	ArrowCooltime = 0;
 }
 
 Objects::Objects(Building * pBuilding , Renderer * pRenderer)
