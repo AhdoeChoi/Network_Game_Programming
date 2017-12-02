@@ -42,4 +42,5 @@ public:
 public:
 	bool				IsCollide(Bullet & bullet, Building & building);
 	void				Animate(); //충돌검사 , 매 프레임마다 업데이트된 내용을 처리하는 부분
+	void				CreateBullet(buildings building); //총알 생성
 };

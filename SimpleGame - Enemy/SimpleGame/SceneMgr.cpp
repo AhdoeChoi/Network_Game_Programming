@@ -170,3 +170,96 @@ void SceneMgr::Animate()
 {
 
 }
+
+void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수
+{
+	float3 position(0, 0, 0);
+	int vecx, vecy;
+
+	for (int i = 0; i < 3; i++)
+	{
+		switch (building.building[i].Info.istate)
+		{
+		case TOPA:
+			if (building.building->Bullet.IsCoolTime)
+			{
+				for (int j = 0; j < 9; j++)
+				{
+					position.x = building.building[i].Info.Pos.fxpos - 40 * cos((45 + j * 10)*3.14 / 180) * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+					position.y = building.building[i].Info.Pos.fypos - 40 * sin((45 + j * 10)*3.14 / 180) * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+
+					vecx = position.x - building.building[i].Info.Pos.fxpos;
+					vecy = position.y - building.building[i].Info.Pos.fypos;
+
+					Objects * newobject = new Objects;
+					for (int k = 0; k < MAX_BULLET_COUNT; k++)
+					{
+						/*if (!m_bullets[k])
+						{
+						m_bullets[k] = newobject;
+						break;
+						}
+						else if (!m_bullets[k]->m_active)
+						{
+						m_bullets[k] = newobject;
+						break;
+						}*/
+					}
+				}
+			}
+			break;
+		case TOPB:
+			if (building.building->Bullet.IsCoolTime)
+			{
+				for (int j = 0; j < 6; j++)
+				{
+					position.x = building.building[i].Info.Pos.fxpos - (50 + (20 * j))* building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+					position.y = building.building[i].Info.Pos.fypos - 40 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+
+					vecx = 0;
+					vecy = position.y - building.building[i].Info.Pos.fypos;
+
+					Objects * newobject = new Objects;
+					for (int k = 0; k < MAX_BULLET_COUNT; k++)
+					{
+						/*if (!m_bullets[k])
+						{
+						m_bullets[k] = newobject;
+						break;
+						}
+						else if (!m_bullets[k]->m_active)
+						{
+						m_bullets[k] = newobject;
+						break;
+						}*/
+					}
+				}
+			}
+			break;
+		case TOPC:
+			if (building.building->Bullet.IsCoolTime)
+			{
+				position.x = building.building[i].Info.Pos.fxpos - 60 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+				position.y = building.building[i].Info.Pos.fypos - 40 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+
+				vecy = position.y - building.building[i].Info.Pos.fypos;
+
+				Objects * newobject = new Objects;
+				for (int k = 0; k < MAX_BULLET_COUNT; k++)
+				{
+					/*if (!m_bullets[k])
+					{
+					m_bullets[k] = newobject;
+					break;
+					}
+					else if (!m_bullets[k]->m_active)
+					{
+					m_bullets[k] = newobject;
+					break;
+					}*/
+				}
+			}
+			break;
+		}
+	}
+}
