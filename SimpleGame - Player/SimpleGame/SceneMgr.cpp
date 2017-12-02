@@ -111,9 +111,11 @@ void SceneMgr::SetOpponentData(Buildings  enemy)
 	 m_Enemy = enemy; 
 }
 
-void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish)
+void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 {
 	//cout << xpos << endl;
+	keystate = keystate % 3;
+	//cout << keystate << endl;
 	if (xpos < -80 && xpos > -250)
 	{
 		if (m_bOverlap[0])
@@ -142,6 +144,15 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish)
 		m_bOverlap[2] = true;
 	}
 
+	if (BuildObjectFinish)
+	{
+		if(keystate ==0)
+			m_renderer->DrawSolidRect(0, 100, 0, 50, 1, 0, 0, 1);
+		if (keystate == 1)
+			m_renderer->DrawSolidRect(0, 100, 0, 50, 0, 1, 0, 1);
+		if (keystate == 2)
+			m_renderer->DrawSolidRect(0, 100, 0, 50, 0, 0, 1, 1);
+	}
 
 
 	//배치하는 로직 필요 (마우스클릭하고)
@@ -159,6 +170,13 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish)
 		pNewObject->m_Building.Info.Pos.fxpos = xpos;
 		//여기를 좀더 자세히 채워야함
 
+		if (keystate == 0)
+			pNewObject->m_Building.Info.istate = TOPA;
+		if (keystate == 1)
+			pNewObject->m_Building.Info.istate = TOPB;
+		if (keystate == 2)
+			pNewObject->m_Building.Info.istate = TOPC;
+
 
 		m_ppPlayerClass[m_iSetPlayerIndex] = pNewObject;
 		m_iSetPlayerIndex++;
@@ -167,7 +185,7 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish)
 
 	for (int i = 0; i < m_iSetPlayerIndex; ++i)
 	{
-		m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -40, 0, 50, 1, 0, 0, 1);
+		m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -150, 0, 50, 1, 0, 0, 1);
 	}
 
 	if (m_iSetPlayerIndex == 3) // 배치 완료

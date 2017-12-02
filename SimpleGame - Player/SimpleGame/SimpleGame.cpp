@@ -25,6 +25,7 @@ bool g_left_mouse = false;
 bool bBuildObjectFinish = false;
 
 int xpos = -300;
+int iInputKey = 0;
 
 void RenderScene(void)
 {
@@ -36,7 +37,7 @@ void RenderScene(void)
 
 	if (!bBuildObjectFinish) //빌드 오브젝트가 끝나면 서버 동작
 	{
-		gameFrameWork->m_pScene->BuildObject(xpos, &bBuildObjectFinish);
+		gameFrameWork->m_pScene->BuildObject(xpos, &bBuildObjectFinish, iInputKey);
 		xpos = -300;
 	}
 	else
@@ -84,6 +85,10 @@ void MouseInput(int button, int state, int x, int y)
 
 void KeyInput(unsigned char key, int x, int y)
 {
+	if (key == 'c')
+	{
+		iInputKey++;
+	}
 	RenderScene();
 }
 
