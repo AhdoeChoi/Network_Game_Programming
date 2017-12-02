@@ -122,8 +122,9 @@ void SceneMgr::SetOpponentData(Buildings enemy)
 	 m_Enemy = enemy; 
 }
 
-void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish)
+void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 {
+	keystate = keystate % 3;
 	if (xpos < -80 && xpos > -250)
 	{
 		if (m_bOverlap[0])
@@ -152,7 +153,15 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish)
 		m_bOverlap[2] = true;
 	}
 
-
+	if (BuildObjectFinish)
+	{
+		if (keystate == 0)
+			m_renderer->DrawSolidRect(0, 100, 0, 50, 1, 0, 0, 1);
+		if (keystate == 1)
+			m_renderer->DrawSolidRect(0, 100, 0, 50, 0, 1, 0, 1);
+		if (keystate == 2)
+			m_renderer->DrawSolidRect(0, 100, 0, 50, 0, 0, 1, 1);
+	}
 
 	//배치하는 로직 필요 (마우스클릭하고)
 
@@ -169,6 +178,13 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish)
 		pNewObject->m_Building.Info.Pos.fxpos = xpos;
 		//여기를 좀더 자세히 채워야함
 
+		if (keystate == 0)
+			pNewObject->m_Building.Info.istate = TOPA;
+		if (keystate == 1)
+			pNewObject->m_Building.Info.istate = TOPB;
+		if (keystate == 2)
+			pNewObject->m_Building.Info.istate = TOPC;
+
 
 		m_ppPlayerClass[m_iSetPlayerIndex] = pNewObject;
 		m_iSetPlayerIndex++;
@@ -177,7 +193,7 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish)
 
 	for (int i = 0; i < m_iSetPlayerIndex; ++i)
 	{
-		m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -40, 0, 50, 1, 0, 0, 1);
+		m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -150, 0, 50, 1, 0, 0, 1);
 	}
 
 	if (m_iSetPlayerIndex == 3) // 배치 완료
@@ -188,4 +204,97 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish)
 void SceneMgr::Animate()
 {
 
+}
+
+void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수
+{
+	float3 position(0, 0, 0);
+	int vecx, vecy;
+
+	for (int i = 0; i < 3; i++)
+	{
+		switch (building.building[i].Info.istate)
+		{
+		case TOPA:
+			if (building.building->Bullet.IsCoolTime)
+			{
+				for (int j = 0; j < 9; j++)
+				{
+					position.x = building.building[i].Info.Pos.fxpos - 40 * cos((45 + j * 10)*3.14 / 180) * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+					position.y = building.building[i].Info.Pos.fypos - 40 * sin((45 + j * 10)*3.14 / 180) * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+
+					vecx = position.x - building.building[i].Info.Pos.fxpos;
+					vecy = position.y - building.building[i].Info.Pos.fypos;
+
+					Objects * newobject = new Objects;
+					for (int k = 0; k < MAX_BULLET_COUNT; k++)
+					{
+						/*if (!m_bullets[k])
+						{
+						m_bullets[k] = newobject;
+						break;
+						}
+						else if (!m_bullets[k]->m_active)
+						{
+						m_bullets[k] = newobject;
+						break;
+						}*/
+					}
+				}
+			}
+			break;
+		case TOPB:
+			if (building.building->Bullet.IsCoolTime)
+			{
+				for (int j = 0; j < 6; j++)
+				{
+					position.x = building.building[i].Info.Pos.fxpos - (50 + (20 * j))* building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+					position.y = building.building[i].Info.Pos.fypos - 40 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+
+					vecx = 0;
+					vecy = position.y - building.building[i].Info.Pos.fypos;
+
+					Objects * newobject = new Objects;
+					for (int k = 0; k < MAX_BULLET_COUNT; k++)
+					{
+						/*if (!m_bullets[k])
+						{
+						m_bullets[k] = newobject;
+						break;
+						}
+						else if (!m_bullets[k]->m_active)
+						{
+						m_bullets[k] = newobject;
+						break;
+						}*/
+					}
+				}
+			}
+			break;
+		case TOPC:
+			if (building.building->Bullet.IsCoolTime)
+			{
+				position.x = building.building[i].Info.Pos.fxpos - 60 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+				position.y = building.building[i].Info.Pos.fypos - 40 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+
+				vecy = position.y - building.building[i].Info.Pos.fypos;
+
+				Objects * newobject = new Objects;
+				for (int k = 0; k < MAX_BULLET_COUNT; k++)
+				{
+					/*if (!m_bullets[k])
+					{
+					m_bullets[k] = newobject;
+					break;
+					}
+					else if (!m_bullets[k]->m_active)
+					{
+					m_bullets[k] = newobject;
+					break;
+					}*/
+				}
+			}
+			break;
+		}
+	}
 }

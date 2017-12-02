@@ -48,9 +48,7 @@ typedef struct player_info
 
 typedef struct bullet
 {
-	Pos			Velocity;
-	Pos			Pos;
-	int			isize;
+	bool		IsCoolTime;
 }Bullet;
 
 typedef struct shield
