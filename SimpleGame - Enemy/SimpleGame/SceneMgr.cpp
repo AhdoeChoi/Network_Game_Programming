@@ -68,12 +68,27 @@ void SceneMgr::Render()
 	//1.내꺼 빌딩 그려
 	for (int i = 0; i < 3; ++i)
 	{
-		m_renderer->DrawSolidRect(m_Player.building[i].Info.Pos.fxpos,
-			m_Player.building[i].Info.Pos.fypos,
-			m_Player.building[i].Info.Pos.fzpos,
-			50,
-			1, 0, 0, 1
-		);
+		if (m_Player.building[i].Info.istate == TOPA)
+			m_renderer->DrawSolidRect(m_Player.building[i].Info.Pos.fxpos,
+				m_Player.building[i].Info.Pos.fypos,
+				m_Player.building[i].Info.Pos.fzpos,
+				50,
+				1, 0, 0, 1
+			);
+		if (m_Player.building[i].Info.istate == TOPB)
+			m_renderer->DrawSolidRect(m_Player.building[i].Info.Pos.fxpos,
+				m_Player.building[i].Info.Pos.fypos,
+				m_Player.building[i].Info.Pos.fzpos,
+				50,
+				0, 1, 0, 1
+			);
+		if (m_Player.building[i].Info.istate == TOPC)
+			m_renderer->DrawSolidRect(m_Player.building[i].Info.Pos.fxpos,
+				m_Player.building[i].Info.Pos.fypos,
+				m_Player.building[i].Info.Pos.fzpos,
+				50,
+				0, 0, 1, 1
+			);
 	}
 
 	//2.내꺼 총알 그려
@@ -97,15 +112,32 @@ void SceneMgr::Render()
 	//2. 적 총알 그려
 
 
+
 	for (int i = 0; i < 3; ++i)
 	{
-		m_renderer->DrawSolidRect(m_Enemy.building[i].Info.Pos.fxpos,
-			m_Enemy.building[i].Info.Pos.fypos + 100,
-			m_Enemy.building[i].Info.Pos.fzpos,
-			50,
-			1, 0, 1, 1
-		);
+		if (m_Enemy.building[i].Info.istate == TOPA)
+			m_renderer->DrawSolidRect(-m_Enemy.building[i].Info.Pos.fxpos,
+				-m_Enemy.building[i].Info.Pos.fypos,
+				m_Enemy.building[i].Info.Pos.fzpos,
+				50,
+				1, 0, 0, 1
+			);
+		if (m_Enemy.building[i].Info.istate == TOPB)
+			m_renderer->DrawSolidRect(-m_Enemy.building[i].Info.Pos.fxpos,
+				-m_Enemy.building[i].Info.Pos.fypos,
+				m_Enemy.building[i].Info.Pos.fzpos,
+				50,
+				0, 1, 0, 1
+			);
+		if (m_Enemy.building[i].Info.istate == TOPC)
+			m_renderer->DrawSolidRect(-m_Enemy.building[i].Info.Pos.fxpos,
+				-m_Enemy.building[i].Info.Pos.fypos,
+				m_Enemy.building[i].Info.Pos.fzpos,
+				50,
+				0, 0, 1, 1
+			);
 	}
+
 	//m_renderer->DrawSolidRect(m_pEnemy);
 
 }
@@ -176,6 +208,8 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 		Objects * pNewObject = new Objects;
 
 		pNewObject->m_Building.Info.Pos.fxpos = xpos;
+		pNewObject->m_Building.Info.Pos.fypos = -200;
+
 		//여기를 좀더 자세히 채워야함
 
 		if (keystate == 0)
@@ -193,7 +227,12 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 
 	for (int i = 0; i < m_iSetPlayerIndex; ++i)
 	{
-		m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -150, 0, 50, 1, 0, 0, 1);
+		if (m_ppPlayerClass[i]->m_Building.Info.istate == TOPA)
+			m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 0, 0, 1);
+		if (m_ppPlayerClass[i]->m_Building.Info.istate == TOPB)
+			m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 0, 1, 0, 1);
+		if (m_ppPlayerClass[i]->m_Building.Info.istate == TOPC)
+			m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 0, 0, 1, 1);
 	}
 
 	if (m_iSetPlayerIndex == 3) // 배치 완료

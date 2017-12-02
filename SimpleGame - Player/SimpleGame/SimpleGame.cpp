@@ -85,7 +85,7 @@ void MouseInput(int button, int state, int x, int y)
 
 void KeyInput(unsigned char key, int x, int y)
 {
-	if (key == 'c')
+	if (key == 'c' || key == 'C')
 	{
 		iInputKey++;
 	}
@@ -103,7 +103,7 @@ int main(int argc, char **argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(0, 0);
-	glutInitWindowSize(500, 500);
+	glutInitWindowSize(500, 800);
 	glutCreateWindow("Game Software Engineering KPU");
 
 	glewInit();
@@ -121,7 +121,7 @@ int main(int argc, char **argv)
 	//{
 	//	std::cout << "Renderer could not be initialized.. \n";
 	//}
-	g_SceneMgr = new SceneMgr(500, 500);
+	g_SceneMgr = new SceneMgr(500, 800);
 	gameFrameWork = new GameFrameWork;
 
 	gameFrameWork->m_pScene = g_SceneMgr;
