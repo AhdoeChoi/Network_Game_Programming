@@ -53,6 +53,15 @@ GameFrameWork::~GameFrameWork()
 
 }
 
+void GameFrameWork::Update(float elapsedTime)
+{
+	if (m_pScene == NULL)
+	{
+		m_pScene = new SceneMgr;
+	}
+	m_pScene->Update(elapsedTime);
+}
+
 int	GameFrameWork::SendToOpponent(SOCKET *socket, Buildings building, int len, int flag)
 {
 

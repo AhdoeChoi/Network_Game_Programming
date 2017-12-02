@@ -33,6 +33,7 @@ SceneMgr::~SceneMgr()
 		delete[] m_ppPlayerClass;
 
 	}
+	delete m_pEnemyClass;
 }
 
 void SceneMgr::Update(DWORD elapsedTime)

@@ -13,7 +13,7 @@ public:
 	Buildings			m_Enemy; //Scene에 넘겨줄 enemy
 	Buildings			m_Player;
 public:
-	void				Update(float elapsedTime) { m_pScene->Update(elapsedTime); }
+	void				Update(float elapsedTime);
 	void				Render() { m_pScene->Render(); }
 	
 //서버함수 부분

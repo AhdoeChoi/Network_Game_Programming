@@ -2,6 +2,10 @@
 #include "SceneMgr.h"
 #include <random>
 
+SceneMgr::SceneMgr()
+{
+}
+
 SceneMgr::SceneMgr(int x, int y)
 {
 	m_renderer = new Renderer(x, y);
@@ -14,6 +18,7 @@ SceneMgr::SceneMgr(int x, int y)
 	{
 		m_bOverlap[i] = false;
 	}
+	memset(&m_Enemy, 0, sizeof(m_Enemy));
 }
 
 SceneMgr::~SceneMgr()
@@ -29,13 +34,17 @@ SceneMgr::~SceneMgr()
 		delete[] m_ppPlayerClass;
 
 	}
+	delete m_pEnemyClass;
 }
 
 void SceneMgr::Update(DWORD elapsedTime)
 {
 	////////////////////////////
 	
-
+	if (m_pEnemyClass == NULL)
+	{
+		m_pEnemyClass = new Objects;
+	}
 	//m_pPlayer를 채워줘야함(빌드오브젝트한걸로)
 
 

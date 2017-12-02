@@ -52,6 +52,8 @@ public:
 	Renderer			*m_renderer;
 	Building			m_Building;
 
+
+	Buildings			*m_pBuildings;
 	float ArrowCooltime;
 
 	Objects();

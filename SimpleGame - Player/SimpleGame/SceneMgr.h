@@ -25,7 +25,7 @@ public:
 	Buildings			m_Player;
 	Buildings			m_Enemy;
 
-	Objects				*m_pEnemyClass;
+	Objects				*m_pEnemyClass = NULL;
 
 	Objects				**m_ppPlayerClass;
 

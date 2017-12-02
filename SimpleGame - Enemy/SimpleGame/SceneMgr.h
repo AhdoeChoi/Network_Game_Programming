@@ -25,10 +25,13 @@ public:
 	Buildings			m_Player;
 	Buildings			m_Enemy;
 
-	Objects				**m_ppPlayerClass = NULL;
-	Objects				*m_pEnemyClass;
+
+	Objects				*m_pEnemyClass = NULL;
+
+	Objects				**m_ppPlayerClass;
 
 public:
+	SceneMgr();
 	SceneMgr(int x, int y);
 	~SceneMgr();
 	void				Update(DWORD elapsedTime); // 오브잭트를 update 해주는 함수 (Renderer 포함)

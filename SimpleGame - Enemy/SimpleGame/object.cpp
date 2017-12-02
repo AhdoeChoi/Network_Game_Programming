@@ -55,8 +55,9 @@ void Objects::Render()
 
 }
 
-void Objects::Update(Buildings pBuilding ,float time)
+void Objects::Update(Buildings buildings,float time)
 {
+	m_pBuildings = &buildings;
 
 	//m_Building = pBuilding;
 
@@ -71,6 +72,10 @@ void Objects::Update(Buildings pBuilding ,float time)
 	//	m_pos.y = m_pos.y + (m_vector3.y * time * 0.001f);
 
 	//}
+
+	cout << m_pBuildings->building[0].Info.Pos.fxpos << endl;
+	cout << m_pBuildings->building[1].Info.Pos.fxpos << endl;
+	cout << m_pBuildings->building[2].Info.Pos.fxpos << endl;
 }
 
 void Objects::Setvector(float vectorX, float vectorY, float vectorZ)
