@@ -72,9 +72,8 @@ void Objects::Update(Buildings  buildings ,float time)
 	//cout << buildings.building[0].Info.Pos.fxpos << endl;
 	//m_Buildings.building[0].Info.Pos.fxpos = buildings.building[0].Info.Pos.fxpos;
 	m_pBuildings = &buildings;
-	cout << m_pBuildings->building[0].Info.Pos.fxpos << endl;
-	cout << m_pBuildings->building[1].Info.Pos.fxpos << endl;
-	cout << m_pBuildings->building[2].Info.Pos.fxpos << endl;
+
+
 
 
 	//m_Building = pBuilding;

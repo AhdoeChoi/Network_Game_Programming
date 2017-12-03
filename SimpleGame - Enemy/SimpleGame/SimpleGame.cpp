@@ -26,7 +26,7 @@ int xpos = -300;
 int iInputKey = 0;
 
 
-
+int shiledXpos = 0;
 
 void RenderScene(void)
 {
@@ -80,11 +80,25 @@ void Idle(void)
 
 void MouseInput(int button, int state, int x, int y)
 {
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-		g_left_mouse = true;
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
+	if (!bBuildObjectFinish)
 	{
-		xpos = x - 250;
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+			g_left_mouse = true;
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
+		{
+			xpos = x - 250;
+		}
+	}
+	else
+	{
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+		{
+			shiledXpos = x - 250;
+
+			gameFrameWork->m_pScene->shieldXpos = shiledXpos;
+			gameFrameWork->m_pScene->shieldYpos = -y + 400;
+
+		}
 	}
 	RenderScene();
 }

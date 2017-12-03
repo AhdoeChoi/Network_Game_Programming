@@ -29,6 +29,10 @@ public:
 
 	Objects				**m_ppPlayerClass;
 
+	int					shieldXpos = 0;
+	int					shieldYpos = 0;
+
+
 public:
 	SceneMgr();
 	SceneMgr(int x, int y);

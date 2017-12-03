@@ -79,9 +79,7 @@ void Objects::Update(Buildings buildings,float time)
 
 	//}
 
-	cout << m_pBuildings->building[0].Info.Pos.fxpos << endl;
-	cout << m_pBuildings->building[1].Info.Pos.fxpos << endl;
-	cout << m_pBuildings->building[2].Info.Pos.fxpos << endl;
+
 }
 
 void Objects::Setvector(float vectorX, float vectorY, float vectorZ)

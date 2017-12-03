@@ -120,6 +120,8 @@ void GameFrameWork::ServerRunning()
 	}
 	m_pScene->m_Player = m_Player;
 
+	m_Player.Shield.Pos.fxpos = m_pScene->shieldXpos;
+	m_Player.Shield.Pos.fypos = m_pScene->shieldYpos;
 	SendToOpponent(&client_socket, m_Player, sizeof(m_Player), 0); //내 정보 보내고
 	RecvFromOpponent(&client_socket, m_Enemy, sizeof(m_Enemy), 0); // 상대 정보 받아온다.
 	//SendToOpponent()

@@ -60,11 +60,12 @@ typedef struct shield
 typedef struct building
 {
 	PInfo		Info;
-	Shield		Shield;
+
 	Bullet		Bullet;
 }Building;
 
 typedef struct buildings
 {
 	building	building[3];
+	Shield		Shield;
 }Buildings;

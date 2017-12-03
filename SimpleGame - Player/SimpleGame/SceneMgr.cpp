@@ -45,7 +45,12 @@ void SceneMgr::Update(DWORD elapsedTime)
 	}
 
 	//m_pPlayer를 채워줘야함(빌드오브젝트한걸로)
+	
 
+	
+	m_Player.Shield.Pos.fxpos = shieldXpos;
+
+	m_Player.Shield.Pos.fypos = shieldYpos;
 
 
 	/*플레이어 업데이트*/
@@ -57,6 +62,8 @@ void SceneMgr::Update(DWORD elapsedTime)
 	/*적 업데이트*/
 
 	m_pEnemyClass->Update(m_Enemy, elapsedTime);
+
+
 }
 
 void SceneMgr::Render()
@@ -91,6 +98,15 @@ void SceneMgr::Render()
 	}
 	//2.내꺼 총알 그려
 
+	//3.내꺼 쉴드 그려
+
+	if(m_Player.Shield.Pos.fxpos != 0 && m_Player.Shield.Pos.fypos != 0)
+	m_renderer->DrawSolidRect(m_Player.Shield.Pos.fxpos,
+		m_Player.Shield.Pos.fypos,
+		m_Player.Shield.Pos.fzpos,
+		50,
+		0, 0, 1, 1
+	);
 
 	//m_pPlayerClass->Render();
 
@@ -110,14 +126,14 @@ void SceneMgr::Render()
 
 	for (int i = 0; i < 3; ++i)
 	{
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		m_renderer->DrawSolidRect(-(m_Enemy.building[i].Info.Pos.fxpos),
 			-(m_Enemy.building[i].Info.Pos.fypos),
 			-(m_Enemy.building[i].Info.Pos.fzpos),
 			50,
 			1, 0, 1, 1
 		);
-=======
+//=======
 		if (m_Enemy.building[i].Info.istate == TOPA)
 			m_renderer->DrawSolidRect(-m_Enemy.building[i].Info.Pos.fxpos,
 				-m_Enemy.building[i].Info.Pos.fypos,
@@ -139,12 +155,18 @@ void SceneMgr::Render()
 				50,
 				0, 0, 1, 1
 			);
->>>>>>> c84b196718a2d6ae25bcee6ba025a0aff97e8c51
+//>>>>>>> c84b196718a2d6ae25bcee6ba025a0aff97e8c51
 	}
 	
 	//1. 적 빌딩 그려
 	//2. 적 총알 그려
-
+	// 3. 적 쉴드 그려
+	if(m_Enemy.Shield.Pos.fxpos!= 0 && m_Enemy.Shield.Pos.fypos)
+	m_renderer->DrawSolidRect(m_Enemy.Shield.Pos.fxpos,
+		m_Enemy.Shield.Pos.fypos,
+		m_Enemy.Shield.Pos.fzpos,
+		50,
+		1, 1, 1, 1);
 	//m_renderer->DrawSolidRect(m_pEnemy);
 
 }
@@ -219,10 +241,10 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 
 		pNewObject->m_Building.Info.Pos.fxpos = xpos;
 		pNewObject->m_Building.Info.Pos.fypos = -200;
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 
->>>>>>> c84b196718a2d6ae25bcee6ba025a0aff97e8c51
+//>>>>>>> c84b196718a2d6ae25bcee6ba025a0aff97e8c51
 		//여기를 좀더 자세히 채워야함
 //<<<<<<< HEAD
 		//pNewObject->m_Building.Bullet.
