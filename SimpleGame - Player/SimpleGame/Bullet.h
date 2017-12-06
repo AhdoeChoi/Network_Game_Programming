@@ -8,6 +8,7 @@ private:
 	int		m_type;
 	pos		m_pos;
 	pos		m_vector;
+	pos		m_color;
 	int		m_hp;
 	int		m_size;
 	bool	m_active;
@@ -15,7 +16,7 @@ private:
 public:
 	BulletObject();
 
-	BulletObject(int type, float xpos, float ypos, float zpos, float vecx, float vecy, float vecz);
+	BulletObject(int type, float xpos, float ypos, float zpos, float vecx, float vecy, float vecz, int team);
 
 	~BulletObject();
 

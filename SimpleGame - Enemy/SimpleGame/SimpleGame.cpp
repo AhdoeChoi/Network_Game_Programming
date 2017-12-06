@@ -44,12 +44,11 @@ void RenderScene(void)
 	{
 		gameFrameWork->m_pScene->BuildObject(xpos, &bBuildObjectFinish, iInputKey);
 		xpos = -300;
-
 	}
 	else
 	{
 		gameFrameWork->ServerRunning();
-		DWORD currTime = timeGetTime();
+		DWORD currTime = timeGetTime();	
 		DWORD elapsedTime = currTime - CurrentTime; //한프레임 그리는데 걸리는 시간임
 
 													//=============================================== 서버데이터 주고받어

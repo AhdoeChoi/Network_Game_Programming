@@ -20,7 +20,8 @@ using namespace std;
 #define TOPB_BULLET 5
 #define TOPC_Bullet 6
 
-
+#define PLAYER_TEAM 0
+#define ENEMY_TEAM 1
 
 
 

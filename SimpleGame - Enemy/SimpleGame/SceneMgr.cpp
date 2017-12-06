@@ -54,6 +54,10 @@ void SceneMgr::Update(DWORD elapsedTime)
 	}
 
 	//m_pPlayer를 채워줘야함(빌드오브젝트한걸로)
+
+	CreateBullet(m_Enemy);
+	CreateBullet(m_Player);
+
 	total_frame += elapsedTime;
 	if (total_frame > 2000)
 	{
@@ -63,7 +67,13 @@ void SceneMgr::Update(DWORD elapsedTime)
 
 		total_frame = 0;
 	}
-	CreateBullet(m_Player);
+	else
+	{
+		m_Player.building[0].Bullet.IsCoolTime = false;
+		m_Player.building[1].Bullet.IsCoolTime = false;
+		m_Player.building[2].Bullet.IsCoolTime = false;
+	}
+	
 
 	for (int i = 0; i < 500; i++)
 	{
@@ -311,6 +321,10 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 	if (m_iSetPlayerIndex == 3) // 배치 완료
 	{
 		*BuildObjectFinish = true;
+		for (int i = 0; i < 3; ++i)
+		{
+			m_Player.building[i] = (m_ppPlayerClass[i]->m_Building);
+		}
 	}
 
 
@@ -328,6 +342,7 @@ void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수
 	float3 position(0, 0, 0);
 	int vecx = 0;
 	int vecy = 0;
+	int team;
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -343,9 +358,13 @@ void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수
 
 					vecx = position.x - building.building[i].Info.Pos.fxpos;
 					vecy = position.y - building.building[i].Info.Pos.fypos;
+					if (building.building[i].Info.Pos.fypos > 0)
+						team = ENEMY_TEAM;
+					else
+						team = PLAYER_TEAM;
 
 					BulletObject * newobject = new BulletObject(building.building[i].Info.istate, building.building[i].Info.Pos.fxpos, building.building[i].Info.Pos.fypos, building.building[i].Info.Pos.fzpos,
-						vecx, vecy, 0);
+						vecx, vecy, 0, team);
 					for (int k = 0; k < MAX_BULLET_COUNT; k++)
 					{
 						if (!m_pbullet[k])
@@ -372,9 +391,13 @@ void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수
 
 					vecx = 0;
 					vecy = position.y - building.building[i].Info.Pos.fypos;
+					if (building.building[i].Info.Pos.fypos > 0)
+						team = ENEMY_TEAM;
+					else
+						team = PLAYER_TEAM;
 
 					BulletObject * newobject = new BulletObject(building.building[i].Info.istate, position.x, building.building[i].Info.Pos.fypos, building.building[i].Info.Pos.fzpos,
-						vecx, vecy, 0);
+						vecx, vecy, 0,team);
 					for (int k = 0; k < MAX_BULLET_COUNT; k++)
 					{
 						if (!m_pbullet[k])
@@ -397,10 +420,15 @@ void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수
 				position.x = building.building[i].Info.Pos.fxpos - 60 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
 				position.y = building.building[i].Info.Pos.fypos - 10 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
 
+				vecx = 0;
 				vecy = position.y - building.building[i].Info.Pos.fypos;
-
+				if (building.building[i].Info.Pos.fypos > 0)
+					team = ENEMY_TEAM;
+				else
+					team = PLAYER_TEAM;
+				cout << team << endl;
 				BulletObject * newobject = new BulletObject(building.building[i].Info.istate, building.building[i].Info.Pos.fxpos, building.building[i].Info.Pos.fypos, building.building[i].Info.Pos.fzpos,
-					vecx, vecy, 0);
+					vecx, vecy, 0,team);
 				for (int k = 0; k < MAX_BULLET_COUNT; k++)
 				{
 					if (!m_pbullet[k])

@@ -11,9 +11,13 @@ BulletObject::BulletObject() : m_hp(0), m_size(0), m_type(0)
 	m_vector.fxpos = 0;
 	m_vector.fypos = 0;
 	m_vector.fzpos = 0;
+
+	m_color.fxpos = 0;
+	m_color.fypos = 0;
+	m_color.fzpos = 0;
 }
 
-BulletObject::BulletObject(int type, float xpos, float ypos, float zpos, float vecx, float vecy, float vecz) :
+BulletObject::BulletObject(int type, float xpos, float ypos, float zpos, float vecx, float vecy, float vecz, int team):
 	m_type(type)
 {
 	m_active = true;
@@ -36,7 +40,19 @@ BulletObject::BulletObject(int type, float xpos, float ypos, float zpos, float v
 	case TOPC:
 		m_hp = 50;
 		break;
-	}		 
+	}
+	if (team == PLAYER_TEAM)
+	{
+		m_color.fxpos = 0.0f;
+		m_color.fypos = 0.0f;
+		m_color.fzpos = 1.0f;
+	}
+	else
+	{
+		m_color.fxpos = 1.0f;
+		m_color.fypos = 0.0f;
+		m_color.fzpos = 0.0f;
+	}
 }			 
 
 void BulletObject::update(Renderer *renderer, float elapsedTime)
@@ -49,7 +65,7 @@ void BulletObject::update(Renderer *renderer, float elapsedTime)
 
 void BulletObject::render(Renderer *renderer)
 {
-	renderer->DrawSolidRect(m_pos.fxpos, m_pos.fypos, m_pos.fzpos, 10, 0, 1, 1, 1);
+	renderer->DrawSolidRect(m_pos.fxpos, m_pos.fypos, m_pos.fzpos, 10, m_color.fxpos, m_color.fypos, m_color.fzpos, 1);
 }
 
 bool BulletObject::GetActive()

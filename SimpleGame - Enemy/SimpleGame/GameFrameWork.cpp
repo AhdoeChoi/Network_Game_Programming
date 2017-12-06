@@ -36,7 +36,6 @@ GameFrameWork::GameFrameWork()
 	cout << "연걸" << endl;
 
 
-
 	//// closesocket()
 	//closesocket(listen_sock);
 
@@ -121,14 +120,15 @@ void GameFrameWork::ServerRunning()
 {
 	// 데이터 송수신 시작
 
-	for (int i = 0; i < 3; ++i)
+	/*for (int i = 0; i < 3; ++i)
 	{
 		m_Player.building[i] = (m_pScene->m_ppPlayerClass[i]->m_Building);
 	}
-	m_pScene->m_Player = m_Player;
+	m_pScene->m_Player = m_Player;*/
+	m_Player = m_pScene->m_Player;
 
-	m_Player.Shield.Pos.fxpos = m_pScene->shieldXpos;
-	m_Player.Shield.Pos.fypos = m_pScene->shieldYpos;
+	m_Player.Shield.Pos.fxpos = -m_pScene->shieldXpos;
+	m_Player.Shield.Pos.fypos = -m_pScene->shieldYpos;
 	SendToOpponent(&client_socket, m_Player, sizeof(m_Player), 0); //내 정보 보내고
 	RecvFromOpponent(&client_socket, m_Enemy, sizeof(m_Enemy), 0); // 상대 정보 받아온다.
 	//SendToOpponent()
