@@ -8,6 +8,8 @@ SceneMgr::SceneMgr()
 
 SceneMgr::SceneMgr(int x, int y)
 {
+
+	total_frame = 0;
 	m_renderer = new Renderer(x, y);
 	m_iSetPlayerIndex = 0;
 
@@ -66,7 +68,7 @@ void SceneMgr::Update(DWORD elapsedTime)
 	for (int i = 0; i < 500; i++)
 	{
 		if (m_pbullet[i])
-			m_pbullet[i]->update(m_renderer);
+			m_pbullet[i]->update(m_renderer,elapsedTime);
 	}
 	m_Player.Shield.Pos.fxpos = shieldXpos;
 
@@ -150,32 +152,32 @@ void SceneMgr::Render()
 	for (int i = 0; i < 3; ++i)
 	{
 		//<<<<<<< HEAD
-		m_renderer->DrawSolidRect(-(m_Enemy.building[i].Info.Pos.fxpos),
-			-(m_Enemy.building[i].Info.Pos.fypos),
-			-(m_Enemy.building[i].Info.Pos.fzpos),
+		m_renderer->DrawSolidRect((m_Enemy.building[i].Info.Pos.fxpos),
+			(m_Enemy.building[i].Info.Pos.fypos),
+			(m_Enemy.building[i].Info.Pos.fzpos),
 			50,
 			1, 0, 1, 1
 		);
 		//=======
 		if (m_Enemy.building[i].Info.istate == TOPA)
-			m_renderer->DrawTexturedRect(-m_Enemy.building[i].Info.Pos.fxpos,
-				-m_Enemy.building[i].Info.Pos.fypos,
+			m_renderer->DrawTexturedRect(m_Enemy.building[i].Info.Pos.fxpos,
+				m_Enemy.building[i].Info.Pos.fypos,
 				m_Enemy.building[i].Info.Pos.fzpos,
 				50,
 				1, 0, 0, 1,
 				m_textureid[0]
 			);
 		if (m_Enemy.building[i].Info.istate == TOPB)
-			m_renderer->DrawTexturedRect(-m_Enemy.building[i].Info.Pos.fxpos,
-				-m_Enemy.building[i].Info.Pos.fypos,
+			m_renderer->DrawTexturedRect(m_Enemy.building[i].Info.Pos.fxpos,
+				m_Enemy.building[i].Info.Pos.fypos,
 				m_Enemy.building[i].Info.Pos.fzpos,
 				50,
 				1, 0, 0, 1,
 				m_textureid[1]
 			);
 		if (m_Enemy.building[i].Info.istate == TOPC)
-			m_renderer->DrawTexturedRect(-m_Enemy.building[i].Info.Pos.fxpos,
-				-m_Enemy.building[i].Info.Pos.fypos,
+			m_renderer->DrawTexturedRect(m_Enemy.building[i].Info.Pos.fxpos,
+				m_Enemy.building[i].Info.Pos.fypos,
 				m_Enemy.building[i].Info.Pos.fzpos,
 				50,
 				1, 0, 0, 1,

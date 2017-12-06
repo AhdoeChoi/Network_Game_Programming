@@ -19,7 +19,7 @@ public:
 
 	~BulletObject();
 
-	void		update(Renderer *renderer);
+	void		update(Renderer *renderer, float elapsedTime);
 
 	void		render(Renderer *renderer);
 

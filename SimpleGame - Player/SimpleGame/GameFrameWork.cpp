@@ -91,6 +91,15 @@ int	GameFrameWork::SendToOpponent(SOCKET *socket, Buildings building, int len, i
 
 	//	내 정보를 상대 클라이언트에게 넘겨줌
 
+	building.building[0].Info.Pos.fxpos = -building.building[0].Info.Pos.fxpos;
+	building.building[1].Info.Pos.fxpos = -building.building[1].Info.Pos.fxpos;
+	building.building[2].Info.Pos.fxpos = -building.building[2].Info.Pos.fxpos;
+
+	building.building[0].Info.Pos.fypos = -building.building[0].Info.Pos.fypos;
+	building.building[1].Info.Pos.fypos = -building.building[1].Info.Pos.fypos;
+	building.building[2].Info.Pos.fypos = -building.building[2].Info.Pos.fypos;
+
+
 	retval = send(*socket, (char*)&building, len, 0);
 	if (retval == SOCKET_ERROR)
 	{

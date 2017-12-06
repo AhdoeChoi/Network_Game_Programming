@@ -39,11 +39,11 @@ BulletObject::BulletObject(int type, float xpos, float ypos, float zpos, float v
 	}		 
 }			 
 
-void BulletObject::update(Renderer *renderer)
+void BulletObject::update(Renderer *renderer, float elapsedTime)
 {
-	m_pos.fxpos += m_vector.fxpos;
-	m_pos.fypos += m_vector.fypos;
-	m_pos.fzpos += m_vector.fzpos;
+	m_pos.fxpos += m_vector.fxpos * 0.01 * elapsedTime;
+	m_pos.fypos += m_vector.fypos *0.01* elapsedTime;
+	m_pos.fzpos += m_vector.fzpos* 0.01*elapsedTime;
 	render(renderer);
 }
 
