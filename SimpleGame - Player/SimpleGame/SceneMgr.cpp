@@ -88,25 +88,28 @@ void SceneMgr::Render()
 	for (int i = 0; i < 3; ++i)
 	{
 		if (m_Player.building[i].Info.istate == TOPA)
-			m_renderer->DrawSolidRect(m_Player.building[i].Info.Pos.fxpos,
+			m_renderer->DrawTexturedRect(m_Player.building[i].Info.Pos.fxpos,
 				m_Player.building[i].Info.Pos.fypos,
 				m_Player.building[i].Info.Pos.fzpos,
 				50,
-				1, 0, 0, 1
+				1, 0, 0, 1,
+				m_renderer->CreatePngTexture("TOPA.png")
 			);
 		if (m_Player.building[i].Info.istate == TOPB)
-			m_renderer->DrawSolidRect(m_Player.building[i].Info.Pos.fxpos,
+			m_renderer->DrawTexturedRect(m_Player.building[i].Info.Pos.fxpos,
 				m_Player.building[i].Info.Pos.fypos,
 				m_Player.building[i].Info.Pos.fzpos,
 				50,
-				0, 1, 0, 1
+				1, 0, 0, 1,
+				m_renderer->CreatePngTexture("TOPB.png")
 			);
 		if (m_Player.building[i].Info.istate == TOPC)
-			m_renderer->DrawSolidRect(m_Player.building[i].Info.Pos.fxpos,
+			m_renderer->DrawTexturedRect(m_Player.building[i].Info.Pos.fxpos,
 				m_Player.building[i].Info.Pos.fypos,
 				m_Player.building[i].Info.Pos.fzpos,
 				50,
-				0, 0, 1, 1
+				1, 0, 0, 1,
+				m_renderer->CreatePngTexture("TOPC.png")
 			);
 	}
 	//2.³»²¨ ÃÑ¾Ë ±×·Á
@@ -148,25 +151,28 @@ void SceneMgr::Render()
 		);
 //=======
 		if (m_Enemy.building[i].Info.istate == TOPA)
-			m_renderer->DrawSolidRect(-m_Enemy.building[i].Info.Pos.fxpos,
+			m_renderer->DrawTexturedRect(-m_Enemy.building[i].Info.Pos.fxpos,
 				-m_Enemy.building[i].Info.Pos.fypos,
 				m_Enemy.building[i].Info.Pos.fzpos,
 				50,
-				1, 0, 0, 1
+				1, 0, 0, 1,
+				m_renderer->CreatePngTexture("TOPA.png")
 			);
 		if (m_Enemy.building[i].Info.istate == TOPB)
-			m_renderer->DrawSolidRect(-m_Enemy.building[i].Info.Pos.fxpos,
+			m_renderer->DrawTexturedRect(-m_Enemy.building[i].Info.Pos.fxpos,
 				-m_Enemy.building[i].Info.Pos.fypos,
 				m_Enemy.building[i].Info.Pos.fzpos,
 				50,
-				0, 1, 0, 1
+				1, 0, 0, 1,
+				m_renderer->CreatePngTexture("TOPB.png")
 			);
 		if (m_Enemy.building[i].Info.istate == TOPC)
-			m_renderer->DrawSolidRect(-m_Enemy.building[i].Info.Pos.fxpos,
+			m_renderer->DrawTexturedRect(-m_Enemy.building[i].Info.Pos.fxpos,
 				-m_Enemy.building[i].Info.Pos.fypos,
 				m_Enemy.building[i].Info.Pos.fzpos,
 				50,
-				0, 0, 1, 1
+				1, 0, 0, 1,
+				m_renderer->CreatePngTexture("TOPC.png")
 			);
 //>>>>>>> c84b196718a2d6ae25bcee6ba025a0aff97e8c51
 	}
@@ -231,12 +237,15 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 
 	if (BuildObjectFinish)
 	{
-		if(keystate ==0)
-			m_renderer->DrawSolidRect(0, 100, 0, 50, 1, 0, 0, 1);
+		if (keystate == 0)
+			//m_renderer->DrawSolidRect(0, 100, 0, 50, 1, 0, 0, 1);
+			m_renderer->DrawTexturedRect(0, 100, 0, 100, 1, 0, 0, 1, m_renderer->CreatePngTexture("TOPA.png"));
 		if (keystate == 1)
-			m_renderer->DrawSolidRect(0, 100, 0, 50, 0, 1, 0, 1);
+			//m_renderer->DrawSolidRect(0, 100, 0, 50, 0, 1, 0, 1);
+			m_renderer->DrawTexturedRect(0, 100, 0, 100, 1, 0, 0, 1, m_renderer->CreatePngTexture("TOPB.png"));
 		if (keystate == 2)
-			m_renderer->DrawSolidRect(0, 100, 0, 50, 0, 0, 1, 1);
+			//m_renderer->DrawSolidRect(0, 100, 0, 50, 0, 0, 1, 1);
+			m_renderer->DrawTexturedRect(0, 100, 0, 100, 1, 0, 0, 1, m_renderer->CreatePngTexture("TOPC.png"));
 	}
 
 
@@ -280,11 +289,14 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 	for (int i = 0; i < m_iSetPlayerIndex; ++i)
 	{
 		if(m_ppPlayerClass[i]->m_Building.Info.istate == TOPA)
-			m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 0, 0, 1);
+			//m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 0, 0, 1);
+			m_renderer->DrawTexturedRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 0, 0, 1, m_renderer->CreatePngTexture("TOPA.png"));
 		if (m_ppPlayerClass[i]->m_Building.Info.istate == TOPB)
-			m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 0, 1, 0, 1);
+			//m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 0, 1, 0, 1);
+			m_renderer->DrawTexturedRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 0, 0, 1, m_renderer->CreatePngTexture("TOPB.png"));
 		if (m_ppPlayerClass[i]->m_Building.Info.istate == TOPC)
-			m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 0, 0, 1, 1);
+			//m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 0, 0, 1, 1);
+			m_renderer->DrawTexturedRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 0, 0, 1, m_renderer->CreatePngTexture("TOPC.png"));
 	}
 
 	if (m_iSetPlayerIndex == 3) // ¹èÄ¡ ¿Ï·á
