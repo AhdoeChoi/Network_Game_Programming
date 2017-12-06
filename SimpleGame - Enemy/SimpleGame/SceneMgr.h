@@ -1,11 +1,12 @@
 #pragma once
 #pragma comment(lib, "winmm.lib")
 #include "object.h"
+#include "Bullet.h"
 #include "Renderer.h"
 #include <Windows.h>
 
 const int MAX_OBJECTS_COUNT = 11;
-const int MAX_BULLET_COUNT = 100;
+const int MAX_BULLET_COUNT = 500;
 const int MAX_ARROW_COUNT = 10;
 const int OBJECT_BUILDING = 0;
 const int OBJECT_CHARACTER = 1;
@@ -25,7 +26,7 @@ public:
 	Buildings			m_Player;
 	Buildings			m_Enemy;
 
-
+	BulletObject		*m_pbullet[500];
 	Objects				*m_pEnemyClass = NULL;
 
 	Objects				**m_ppPlayerClass;
@@ -34,6 +35,7 @@ public:
 	int					shieldXpos = 0;
 	int					shieldYpos = 0;
 
+	float				total_frame;
 public:
 	SceneMgr();
 	SceneMgr(int x, int y);

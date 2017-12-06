@@ -46,7 +46,7 @@ void SceneMgr::Update(DWORD elapsedTime)
 
 	//m_pPlayer를 채워줘야함(빌드오브젝트한걸로)
 	total_frame += elapsedTime;
-	if (total_frame > 20000)
+	if (total_frame > 2000)
 	{
 		m_Player.building[0].Bullet.IsCoolTime = true;
 		m_Player.building[1].Bullet.IsCoolTime = true;
@@ -305,7 +305,8 @@ void SceneMgr::Animate()
 void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수
 {
 	float3 position(0, 0, 0);
-	int vecx, vecy;
+	int vecx = 0;
+	int vecy = 0;
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -345,13 +346,13 @@ void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수
 			{
 				for (int j = 0; j < 6; j++)
 				{
-					position.x = building.building[i].Info.Pos.fxpos - (50 + (20 * j))* building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+					position.x = building.building[i].Info.Pos.fxpos - (((50 - (20 * j))* building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos))* building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos));
 					position.y = building.building[i].Info.Pos.fypos - 10 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
 
 					vecx = 0;
 					vecy = position.y - building.building[i].Info.Pos.fypos;
 
-					BulletObject * newobject = new BulletObject(building.building[i].Info.istate, building.building[i].Info.Pos.fxpos, building.building[i].Info.Pos.fypos, building.building[i].Info.Pos.fzpos,
+					BulletObject * newobject = new BulletObject(building.building[i].Info.istate, position.x, building.building[i].Info.Pos.fypos, building.building[i].Info.Pos.fzpos,
 						vecx, vecy, 0);
 					for (int k = 0; k < MAX_BULLET_COUNT; k++)
 					{

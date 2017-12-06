@@ -1,4 +1,3 @@
-
 #include "stdafx.h"
 #include "object.h"
 #include "Renderer.h"
@@ -13,7 +12,7 @@
 Objects::Objects()
 {
 	::ZeroMemory(&m_Building, sizeof(Building));
-	m_pBuildings = NULL;
+	::ZeroMemory(&m_Buildings, sizeof(Buildings));
 	m_renderer = NULL;
 
 	m_pBuildings = NULL;
