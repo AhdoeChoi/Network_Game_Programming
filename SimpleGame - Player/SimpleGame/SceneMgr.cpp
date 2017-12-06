@@ -45,22 +45,9 @@ void SceneMgr::Update(DWORD elapsedTime)
 	}
 
 	//m_pPlayer를 채워줘야함(빌드오브젝트한걸로)
-	total_frame += elapsedTime;
-	if (total_frame > 20000)
-	{
-		m_Player.building[0].Bullet.IsCoolTime = true;
-		m_Player.building[1].Bullet.IsCoolTime = true;
-		m_Player.building[2].Bullet.IsCoolTime = true;
+	
 
-		total_frame = 0;
-	}
-	CreateBullet(m_Player);
-
-	for (int i = 0; i < 500; i++)
-	{
-		if (m_pbullet[i])
-			m_pbullet[i]->update(m_renderer);
-	}
+	
 	m_Player.Shield.Pos.fxpos = shieldXpos;
 
 	m_Player.Shield.Pos.fypos = shieldYpos;
@@ -312,89 +299,85 @@ void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수
 		switch (building.building[i].Info.istate)
 		{
 		case TOPA:
-			if (building.building[i].Bullet.IsCoolTime)
+			if (building.building->Bullet.IsCoolTime)
 			{
 				for (int j = 0; j < 9; j++)
 				{
-					position.x = building.building[i].Info.Pos.fxpos - 10 * cos((45 + j * 10)*3.14 / 180) * building.building[i].Info.Pos.fypos/abs(building.building[i].Info.Pos.fypos);
-					position.y = building.building[i].Info.Pos.fypos - 10 * sin((45 + j * 10)*3.14 / 180) * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+					position.x = building.building[i].Info.Pos.fxpos - 40 * cos((45 + j * 10)*3.14 / 180) * building.building[i].Info.Pos.fypos/abs(building.building[i].Info.Pos.fypos);
+					position.y = building.building[i].Info.Pos.fypos - 40 * sin((45 + j * 10)*3.14 / 180) * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
 
 					vecx = position.x - building.building[i].Info.Pos.fxpos;
 					vecy = position.y - building.building[i].Info.Pos.fypos;
 
-					BulletObject * newobject = new BulletObject(building.building[i].Info.istate, building.building[i].Info.Pos.fxpos, building.building[i].Info.Pos.fypos, building.building[i].Info.Pos.fzpos,
-						vecx, vecy, 0);
+					Objects * newobject = new Objects;
 					for (int k = 0; k < MAX_BULLET_COUNT; k++)
 					{
-						if (!m_pbullet[k])
+						/*if (!m_bullets[k])
 						{
-							m_pbullet[k] = newobject;
+							m_bullets[k] = newobject;
 							break;
 						}
-						else if (!m_pbullet[k])
+						else if (!m_bullets[k]->m_active)
 						{
-							m_pbullet[k] = newobject;
+							m_bullets[k] = newobject;
 							break;
-						}
+						}*/
 					}
 				}
 			}
 			break;
 		case TOPB:
-			if (building.building[i].Bullet.IsCoolTime)
+			if (building.building->Bullet.IsCoolTime)
 			{
 				for (int j = 0; j < 6; j++)
 				{
 					position.x = building.building[i].Info.Pos.fxpos - (50 + (20 * j))* building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
-					position.y = building.building[i].Info.Pos.fypos - 10 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+					position.y = building.building[i].Info.Pos.fypos - 40 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
 
 					vecx = 0;
 					vecy = position.y - building.building[i].Info.Pos.fypos;
 
-					BulletObject * newobject = new BulletObject(building.building[i].Info.istate, building.building[i].Info.Pos.fxpos, building.building[i].Info.Pos.fypos, building.building[i].Info.Pos.fzpos,
-						vecx, vecy, 0);
+					Objects * newobject = new Objects;
 					for (int k = 0; k < MAX_BULLET_COUNT; k++)
 					{
-						if (!m_pbullet[k])
+						/*if (!m_bullets[k])
 						{
-							m_pbullet[k] = newobject;
+							m_bullets[k] = newobject;
 							break;
 						}
-						else if (!m_pbullet[k])
+						else if (!m_bullets[k]->m_active)
 						{
-							m_pbullet[k] = newobject;
+							m_bullets[k] = newobject;
 							break;
-						}
+						}*/
 					}
 				}
 			}
 			break;
 		case TOPC:
-			if (building.building[i].Bullet.IsCoolTime)
+			if (building.building->Bullet.IsCoolTime)
 			{
 				position.x = building.building[i].Info.Pos.fxpos - 60 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
-				position.y = building.building[i].Info.Pos.fypos - 10 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+				position.y = building.building[i].Info.Pos.fypos - 40 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
 
 				vecy = position.y - building.building[i].Info.Pos.fypos;
 
-				BulletObject * newobject = new BulletObject(building.building[i].Info.istate, building.building[i].Info.Pos.fxpos, building.building[i].Info.Pos.fypos, building.building[i].Info.Pos.fzpos,
-					vecx, vecy, 0);
+				Objects * newobject = new Objects;
 				for (int k = 0; k < MAX_BULLET_COUNT; k++)
 				{
-					if (!m_pbullet[k])
+					/*if (!m_bullets[k])
 					{
-						m_pbullet[k] = newobject;
+						m_bullets[k] = newobject;
 						break;
 					}
-					else if (!m_pbullet[k])
+					else if (!m_bullets[k]->m_active)
 					{
-						m_pbullet[k] = newobject;
+						m_bullets[k] = newobject;
 						break;
-					}
+					}*/
 				}
 			}
 			break;
 		}
-		building.building[i].Bullet.IsCoolTime = false;
 	}
 }

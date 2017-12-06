@@ -1,2 +1,13 @@
-﻿  SimpleGame.vcxproj -> C:\Users\hong7\Desktop\Network_Game_Programming\SimpleGame - Enemy\x64\Debug\넷겜플 텀프 Enemy.exe
-  SimpleGame.vcxproj -> C:\Users\hong7\Desktop\Network_Game_Programming\SimpleGame - Enemy\x64\Debug\넷겜플 텀프 Enemy.pdb (Partial PDB)
+﻿  SceneMgr.cpp
+c:\users\choiahdoe\desktop\깃 데스크탑 넷겜플 텀프\simplegame - enemy\simplegame\scenemgr.cpp(51): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\choiahdoe\desktop\깃 데스크탑 넷겜플 텀프\simplegame - enemy\simplegame\scenemgr.cpp(53): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\choiahdoe\desktop\깃 데스크탑 넷겜플 텀프\simplegame - enemy\simplegame\scenemgr.cpp(63): warning C4244: '인수': 'DWORD'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\choiahdoe\desktop\깃 데스크탑 넷겜플 텀프\simplegame - enemy\simplegame\scenemgr.cpp(237): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\choiahdoe\desktop\깃 데스크탑 넷겜플 텀프\simplegame - enemy\simplegame\scenemgr.cpp(292): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\choiahdoe\desktop\깃 데스크탑 넷겜플 텀프\simplegame - enemy\simplegame\scenemgr.cpp(293): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\choiahdoe\desktop\깃 데스크탑 넷겜플 텀프\simplegame - enemy\simplegame\scenemgr.cpp(295): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\choiahdoe\desktop\깃 데스크탑 넷겜플 텀프\simplegame - enemy\simplegame\scenemgr.cpp(296): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\choiahdoe\desktop\깃 데스크탑 넷겜플 텀프\simplegame - enemy\simplegame\scenemgr.cpp(324): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\choiahdoe\desktop\깃 데스크탑 넷겜플 텀프\simplegame - enemy\simplegame\scenemgr.cpp(349): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SimpleGame.vcxproj -> C:\Users\ChoiAhDoe\Desktop\깃 데스크탑 넷겜플 텀프\SimpleGame - Enemy\x64\Debug\넷겜플 텀프 Enemy.exe
+  SimpleGame.vcxproj -> C:\Users\ChoiAhDoe\Desktop\깃 데스크탑 넷겜플 텀프\SimpleGame - Enemy\x64\Debug\넷겜플 텀프 Enemy.pdb (Partial PDB)
