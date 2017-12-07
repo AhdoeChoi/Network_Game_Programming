@@ -140,7 +140,7 @@ void SceneMgr::Render()
 
 	//3.³»²¨ ½¯µå ±×·Á
 
-	if (m_Player.Shield.Pos.fxpos != 0 && m_Player.Shield.Pos.fypos != 0)
+	
 		m_renderer->DrawSolidRect(m_Player.Shield.Pos.fxpos,
 			m_Player.Shield.Pos.fypos,
 			m_Player.Shield.Pos.fzpos,
@@ -198,7 +198,7 @@ void SceneMgr::Render()
 	//1. Àû ºôµù ±×·Á
 	//2. Àû ÃÑ¾Ë ±×·Á
 	// 3. Àû ½¯µå ±×·Á
-	if (m_Enemy.Shield.Pos.fxpos != 0 && m_Enemy.Shield.Pos.fypos)
+	
 		m_renderer->DrawSolidRect(m_Enemy.Shield.Pos.fxpos,
 			m_Enemy.Shield.Pos.fypos,
 			m_Enemy.Shield.Pos.fzpos,

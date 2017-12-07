@@ -70,6 +70,25 @@ void RenderScene(void)
 	}
 
 
+	////////////////////////////////////////////////
+	UCHAR pKeyBuffer[256];
+	DWORD dwDirection = 0;
+
+	if (::GetKeyboardState(pKeyBuffer))
+	{
+		if (pKeyBuffer[VK_UP] & 0xF0)
+			gameFrameWork->m_pScene->shieldYpos += 1;
+		if (pKeyBuffer[VK_DOWN] & 0xF0)
+			gameFrameWork->m_pScene->shieldYpos -= 1;
+		if (pKeyBuffer[VK_LEFT] & 0xF0)
+			gameFrameWork->m_pScene->shieldXpos -= 1;
+		if (pKeyBuffer[VK_RIGHT] & 0xF0)
+			gameFrameWork->m_pScene->shieldXpos += 1;
+		cout << dwDirection << endl;
+		
+	}
+	////////////////////////////////////////////////////
+
 
 	glutSwapBuffers();
 }

@@ -98,7 +98,8 @@ void SceneMgr::Update(DWORD elapsedTime)
 				m_pbullet[i]->~BulletObject();
 		}
 	}
-
+	
+	Animate();
 }
 
 void SceneMgr::Render()
@@ -211,8 +212,12 @@ void SceneMgr::Render()
 	}
 }
 
-bool SceneMgr::IsCollide(Bullet & bullet, Building & building)
+bool SceneMgr::IsCollide(BulletObject * bullet, Building & building)
 {
+	
+	
+	
+	
 	return false;
 
 	//bullet과 building의 충돌 체크
@@ -336,7 +341,8 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 }
 void SceneMgr::Animate()
 {
-
+	
+	
 }
 
 void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수

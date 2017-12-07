@@ -67,6 +67,26 @@ void RenderScene(void)
 	}
 
 
+	////////////////////////////////////////////////
+	UCHAR pKeyBuffer[256];
+	DWORD dwDirection = 0;
+
+	if (::GetKeyboardState(pKeyBuffer))
+	{
+		if (pKeyBuffer[VK_UP] & 0xF0)
+			gameFrameWork->m_pScene->shieldYpos += 1;
+		if (pKeyBuffer[VK_DOWN] & 0xF0)
+			gameFrameWork->m_pScene->shieldYpos -= 1;
+		if (pKeyBuffer[VK_LEFT] & 0xF0)
+			gameFrameWork->m_pScene->shieldXpos -= 1;
+		if (pKeyBuffer[VK_RIGHT] & 0xF0)
+			gameFrameWork->m_pScene->shieldXpos += 1;
+		cout << dwDirection << endl;
+	
+	}
+////////////////////////////////////////////////////
+
+	
 	glutSwapBuffers();
 }
 
@@ -105,15 +125,39 @@ void MouseInput(int button, int state, int x, int y)
 
 void KeyInput(unsigned char key, int x, int y)
 {
+	
+
 	if (key == 'c' || key == 'C')
 	{
 		iInputKey++;
 	}
+	/*if (key == 'w' || key == 'W')
+	{
+		gameFrameWork->m_pScene->shieldYpos += 5;
+	}
+
+	if (key == 's' || key == 'S')
+	{
+		gameFrameWork->m_pScene->shieldYpos -= 5;
+	}
+
+	if (key == 'a' || key == 'A')
+	{
+		gameFrameWork->m_pScene->shieldXpos -= 5;
+	}
+
+
+	if (key == 'd' || key == 'D')
+	{
+		gameFrameWork->m_pScene->shieldXpos += 5;
+	}*/
+
 	RenderScene();
 }
 
 void SpecialKeyInput(int key, int x, int y)
 {
+	
 	RenderScene();
 }
 

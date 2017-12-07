@@ -20,6 +20,8 @@ BulletObject::BulletObject() : m_hp(0), m_size(0), m_type(0)
 BulletObject::BulletObject(int type, float xpos, float ypos, float zpos, float vecx, float vecy, float vecz, int team) :
 	m_type(type)
 {
+	m_team = team;
+
 	m_active = true;
 	m_pos.fxpos = xpos;
 	m_pos.fypos = ypos;
