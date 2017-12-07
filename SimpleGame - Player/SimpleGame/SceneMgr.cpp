@@ -25,6 +25,7 @@ SceneMgr::SceneMgr(int x, int y)
 	m_textureid[0] = m_renderer->CreatePngTexture("TOPA.png");
 	m_textureid[1] = m_renderer->CreatePngTexture("TOPB.png");
 	m_textureid[2] = m_renderer->CreatePngTexture("TOPC.png");
+	map_id = m_renderer->CreatePngTexture("Map.png");
 }
 
 SceneMgr::~SceneMgr()
@@ -73,11 +74,7 @@ void SceneMgr::Update(DWORD elapsedTime)
 	}
 
 
-	for (int i = 0; i < 500; i++)
-	{
-		if (m_pbullet[i])
-			m_pbullet[i]->update(m_renderer, elapsedTime);
-	}
+	
 	m_Player.Shield.Pos.fxpos = shieldXpos;
 
 	m_Player.Shield.Pos.fypos = shieldYpos;
@@ -92,14 +89,23 @@ void SceneMgr::Update(DWORD elapsedTime)
 	/*적 업데이트*/
 
 	m_pEnemyClass->Update(m_Enemy, elapsedTime);
-
+	for (int i = 0; i < 500; i++)
+	{
+		if (m_pbullet[i])
+		{
+			m_pbullet[i]->update(m_renderer, elapsedTime);
+			if (!m_pbullet[i]->GetActive())
+				m_pbullet[i]->~BulletObject();
+		}
+	}
 
 }
 
 void SceneMgr::Render()
 {
 	//////////////////////////////////////
-
+	//맵 그려
+	m_renderer->DrawTexturedRect(0, 0, 1, 800, 1, 1, 1, 1, map_id);
 	//내 정보 그려 m_pPlayer
 	//1.내꺼 빌딩 그려
 	for (int i = 0; i < 3; ++i)
@@ -160,12 +166,6 @@ void SceneMgr::Render()
 	for (int i = 0; i < 3; ++i)
 	{
 //<<<<<<< HEAD
-		m_renderer->DrawSolidRect((m_Enemy.building[i].Info.Pos.fxpos),
-			(m_Enemy.building[i].Info.Pos.fypos),
-			(m_Enemy.building[i].Info.Pos.fzpos),
-			50,
-			1, 0, 1, 1
-		);
 //=======
 		if (m_Enemy.building[i].Info.istate == TOPA)
 			m_renderer->DrawTexturedRect(m_Enemy.building[i].Info.Pos.fxpos,
@@ -204,7 +204,11 @@ void SceneMgr::Render()
 		50,
 		1, 1, 1, 1);
 	//m_renderer->DrawSolidRect(m_pEnemy);
-
+	for (int i = 0; i < 500; i++)
+	{
+		if (m_pbullet[i])
+			m_pbullet[i]->render(m_renderer);
+	}
 }
 
 bool SceneMgr::IsCollide(Bullet & bullet, Building & building)
@@ -370,7 +374,7 @@ void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수
 							m_pbullet[k] = newobject;
 							break;
 						}
-						else if (!m_pbullet[k])
+						else if (!m_pbullet[k]->GetActive())
 						{
 							m_pbullet[k] = newobject;
 							break;
@@ -403,7 +407,7 @@ void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수
 							m_pbullet[k] = newobject;
 							break;
 						}
-						else if (!m_pbullet[k])
+						else if (!m_pbullet[k]->GetActive())
 						{
 							m_pbullet[k] = newobject;
 							break;
@@ -434,7 +438,7 @@ void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수
 						m_pbullet[k] = newobject;
 						break;
 					}
-					else if (!m_pbullet[k])
+					else if (!m_pbullet[k]->GetActive())
 					{
 						m_pbullet[k] = newobject;
 						break;

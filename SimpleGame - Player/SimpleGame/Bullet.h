@@ -25,4 +25,6 @@ public:
 	void		render(Renderer *renderer);
 
 	bool		GetActive();
+
+	void		LostBullet();
 };

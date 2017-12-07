@@ -33,12 +33,15 @@ BulletObject::BulletObject(int type, float xpos, float ypos, float zpos, float v
 	{
 	case TOPA:
 		m_hp = 20;
+		m_size = 10;
 		break;
 	case TOPB:
 		m_hp = 5;
+		m_size = 5;
 		break;
 	case TOPC:
 		m_hp = 50;
+		m_size = 50;
 		break;
 	}		 
 
@@ -56,20 +59,38 @@ BulletObject::BulletObject(int type, float xpos, float ypos, float zpos, float v
 	}
 }			 
 
+BulletObject::~BulletObject()
+{
+	m_active = false;
+}
+
+
 void BulletObject::update(Renderer *renderer, float elapsedTime)
 {
 	m_pos.fxpos += m_vector.fxpos* 0.01* elapsedTime;
 	m_pos.fypos += m_vector.fypos*0.01 * elapsedTime;
 	m_pos.fzpos += m_vector.fzpos*0.01 * elapsedTime;
-	render(renderer);
+	LostBullet();
 }
 
 void BulletObject::render(Renderer *renderer)
 {
-	renderer->DrawSolidRect(m_pos.fxpos, m_pos.fypos, m_pos.fzpos, 10, m_color.fxpos, m_color.fypos, m_color.fzpos, 1);
+	renderer->DrawSolidRect(m_pos.fxpos, m_pos.fypos, m_pos.fzpos, m_size, m_color.fxpos, m_color.fypos, m_color.fzpos, 1);
 }
 
 bool BulletObject::GetActive()
 {
 	return m_active;
+}
+
+void BulletObject::LostBullet()
+{
+	if (m_pos.fxpos > 250)
+		m_active = false;
+	else if (m_pos.fxpos < -250)
+		m_active = false;
+	else if (m_pos.fypos > 400)
+		m_active = false;
+	else if (m_pos.fypos < -400)
+		m_active = false;
 }

@@ -20,6 +20,7 @@ private:
 	int					m_iSetPlayerIndex;
 	bool				m_bOverlap[3];
 	int					m_textureid[3];
+	int					map_id;
 public:
 	Renderer			*m_renderer;
 
