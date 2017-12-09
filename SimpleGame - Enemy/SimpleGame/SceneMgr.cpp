@@ -28,6 +28,9 @@ SceneMgr::SceneMgr(int x, int y)
 		m_textureid[1] = m_renderer->CreatePngTexture("TOPB.png");
 		m_textureid[2] = m_renderer->CreatePngTexture("TOPC.png");
 		map_id = m_renderer->CreatePngTexture("Map.png");
+
+		m_Player.Shield.Bullet.IsCoolTime = false;
+
 }
 
 SceneMgr::~SceneMgr()
@@ -449,5 +452,34 @@ void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수
 			break;
 		}
 		building.building[i].Bullet.IsCoolTime = false;
+	}
+
+	if (building.Shield.Bullet.IsCoolTime == true)
+	{
+		position.x = building.Shield.Pos.fxpos - 60 * building.Shield.Pos.fypos / abs(building.Shield.Pos.fypos);
+		position.y = building.Shield.Pos.fypos - 10 * building.Shield.Pos.fypos / abs(building.Shield.Pos.fypos);
+
+		vecx = 0;
+		vecy = position.y - building.Shield.Pos.fypos;
+		if (building.Shield.Pos.fypos > 0)
+			team = ENEMY_TEAM;
+		else
+			team = PLAYER_TEAM;
+
+		BulletObject * newobject = new BulletObject(TOPA, building.Shield.Pos.fxpos, building.Shield.Pos.fypos, building.Shield.Pos.fzpos,
+			vecx, vecy, 0, team);
+		for (int k = 0; k < MAX_BULLET_COUNT; k++)
+		{
+			if (!m_pbullet[k])
+			{
+				m_pbullet[k] = newobject;
+				break;
+			}
+			else if (!m_pbullet[k]->GetActive())
+			{
+				m_pbullet[k] = newobject;
+				break;
+			}
+		}
 	}
 }

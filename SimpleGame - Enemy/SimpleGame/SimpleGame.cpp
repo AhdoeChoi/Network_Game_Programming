@@ -28,6 +28,7 @@ int iInputKey = 0;
 
 
 int shiledXpos = 0;
+bool bShootState = false;
 
 void RenderScene(void)
 {
@@ -36,6 +37,7 @@ void RenderScene(void)
 
 
 	
+
 
 	
 
@@ -77,15 +79,36 @@ void RenderScene(void)
 	if (::GetKeyboardState(pKeyBuffer))
 	{
 		if (pKeyBuffer[VK_UP] & 0xF0)
+			if (gameFrameWork->m_pScene->m_Player.Shield.Pos.fypos < 0)
 			gameFrameWork->m_pScene->shieldYpos += 1;
 		if (pKeyBuffer[VK_DOWN] & 0xF0)
+			if (gameFrameWork->m_pScene->m_Player.Shield.Pos.fypos > -400)
 			gameFrameWork->m_pScene->shieldYpos -= 1;
 		if (pKeyBuffer[VK_LEFT] & 0xF0)
 			gameFrameWork->m_pScene->shieldXpos -= 1;
 		if (pKeyBuffer[VK_RIGHT] & 0xF0)
 			gameFrameWork->m_pScene->shieldXpos += 1;
-		cout << dwDirection << endl;
-		
+		if (pKeyBuffer[VK_SPACE] & 0xF0)
+		{
+			if (!bShootState)
+			{
+			
+
+
+				gameFrameWork->m_pScene->m_Player.Shield.Bullet.IsCoolTime = true;
+				bShootState = true;
+			}
+			else
+			{
+				gameFrameWork->m_pScene->m_Player.Shield.Bullet.IsCoolTime = false;
+			}
+		}
+		else
+		{
+
+			bShootState = false;
+		}
+	
 	}
 	////////////////////////////////////////////////////
 

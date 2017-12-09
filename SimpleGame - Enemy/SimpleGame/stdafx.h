@@ -60,6 +60,7 @@ typedef struct shield
 {
 	int			ihp;
 	Pos			Pos;
+	Bullet		Bullet;
 }Shield;
 
 typedef struct building

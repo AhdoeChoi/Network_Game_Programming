@@ -26,6 +26,8 @@ SceneMgr::SceneMgr(int x, int y)
 	m_textureid[1] = m_renderer->CreatePngTexture("TOPB.png");
 	m_textureid[2] = m_renderer->CreatePngTexture("TOPC.png");
 	map_id = m_renderer->CreatePngTexture("Map.png");
+
+	m_Player.Shield.Bullet.IsCoolTime = false;
 }
 
 SceneMgr::~SceneMgr()
@@ -140,7 +142,7 @@ void SceneMgr::Render()
 
 	//3.³»²¨ ½¯µå ±×·Á
 
-	if(m_Player.Shield.Pos.fxpos != 0 && m_Player.Shield.Pos.fypos != 0)
+	
 	m_renderer->DrawSolidRect(m_Player.Shield.Pos.fxpos,
 		m_Player.Shield.Pos.fypos,
 		m_Player.Shield.Pos.fzpos,
@@ -198,7 +200,7 @@ void SceneMgr::Render()
 	//1. Àû ºôµù ±×·Á
 	//2. Àû ÃÑ¾Ë ±×·Á
 	// 3. Àû ½¯µå ±×·Á
-	if(m_Enemy.Shield.Pos.fxpos!= 0 && m_Enemy.Shield.Pos.fypos)
+	
 	m_renderer->DrawSolidRect(m_Enemy.Shield.Pos.fxpos,
 		m_Enemy.Shield.Pos.fypos,
 		m_Enemy.Shield.Pos.fzpos,
@@ -454,5 +456,65 @@ void SceneMgr::CreateBullet(buildings building) // ÃÑ¾Ë »ý¼º ÇÔ¼ö
 			break;
 		}
 		building.building[i].Bullet.IsCoolTime = false;
+		if (building.building[i].Bullet.IsCoolTime)
+		{
+			position.x = building.building[i].Info.Pos.fxpos - 60 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+			position.y = building.building[i].Info.Pos.fypos - 10 * building.building[i].Info.Pos.fypos / abs(building.building[i].Info.Pos.fypos);
+
+			vecx = 0;
+			vecy = position.y - building.building[i].Info.Pos.fypos;
+			if (building.building[i].Info.Pos.fypos > 0)
+				team = ENEMY_TEAM;
+			else
+				team = PLAYER_TEAM;
+
+			BulletObject * newobject = new BulletObject(building.building[i].Info.istate, building.building[i].Info.Pos.fxpos, building.building[i].Info.Pos.fypos, building.building[i].Info.Pos.fzpos,
+				vecx, vecy, 0, team);
+			for (int k = 0; k < MAX_BULLET_COUNT; k++)
+			{
+				if (!m_pbullet[k])
+				{
+					m_pbullet[k] = newobject;
+					break;
+				}
+				else if (!m_pbullet[k]->GetActive())
+				{
+					m_pbullet[k] = newobject;
+					break;
+				}
+			}
+		}
+
 	}
+
+	if (building.Shield.Bullet.IsCoolTime == true)
+	{
+		position.x = building.Shield.Pos.fxpos - 60 * building.Shield.Pos.fypos / abs(building.Shield.Pos.fypos);
+		position.y = building.Shield.Pos.fypos - 10 * building.Shield.Pos.fypos / abs(building.Shield.Pos.fypos);
+
+		vecx = 0;
+		vecy = position.y - building.Shield.Pos.fypos;
+		if (building.Shield.Pos.fypos > 0)
+			team = ENEMY_TEAM;
+		else
+			team = PLAYER_TEAM;
+
+		BulletObject * newobject = new BulletObject(TOPA, building.Shield.Pos.fxpos, building.Shield.Pos.fypos, building.Shield.Pos.fzpos,
+			vecx, vecy, 0, team);
+		for (int k = 0; k < MAX_BULLET_COUNT; k++)
+		{
+			if (!m_pbullet[k])
+			{
+				m_pbullet[k] = newobject;
+				break;
+			}
+			else if (!m_pbullet[k]->GetActive())
+			{
+				m_pbullet[k] = newobject;
+				break;
+			}
+		}
+	}
+
+	//ÇÃ·¹ÀÌ¾î ÃÑ¾Ë »ý¼º
 }
