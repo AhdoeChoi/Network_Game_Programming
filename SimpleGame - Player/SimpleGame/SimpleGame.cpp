@@ -18,7 +18,7 @@ but WITHOUT ANY WARRANTY.
 SceneMgr *g_SceneMgr = NULL;
 GameFrameWork * gameFrameWork = NULL;
 DWORD CurrentTime;
-
+DWORD elapsedTime;
 
 bool g_left_mouse = false;
 
@@ -50,7 +50,7 @@ void RenderScene(void)
 	{
 		gameFrameWork->ServerRunning();
 		DWORD currTime = timeGetTime();
-		DWORD elapsedTime = currTime - CurrentTime; //한프레임 그리는데 걸리는 시간임
+		elapsedTime = currTime - CurrentTime; //한프레임 그리는데 걸리는 시간임
 
 		//=============================================== 서버데이터 주고받어
 		//send & recv 반복
@@ -64,6 +64,7 @@ void RenderScene(void)
 		gameFrameWork->Render();
 
 		CurrentTime = currTime;
+		cout << elapsedTime;
 		//===============================================
 
 
@@ -78,15 +79,15 @@ void RenderScene(void)
 	if (::GetKeyboardState(pKeyBuffer))
 	{
 		if (pKeyBuffer[VK_UP] & 0xF0)
-			if(gameFrameWork->m_pScene->m_Player.Shield.Pos.fypos < 0)
-			gameFrameWork->m_pScene->shieldYpos += 1;
+			if (gameFrameWork->m_pScene->m_Player.Shield.Pos.fypos < 0)
+				gameFrameWork->m_pScene->shieldYpos += 20 * elapsedTime * 0.01;
 		if (pKeyBuffer[VK_DOWN] & 0xF0)
 			if (gameFrameWork->m_pScene->m_Player.Shield.Pos.fypos > -400)
-			gameFrameWork->m_pScene->shieldYpos -= 1;
+				gameFrameWork->m_pScene->shieldYpos -= 20 * elapsedTime * 0.01;
 		if (pKeyBuffer[VK_LEFT] & 0xF0)
-			gameFrameWork->m_pScene->shieldXpos -= 1;
+			gameFrameWork->m_pScene->shieldXpos -= 20 * elapsedTime * 0.01;
 		if (pKeyBuffer[VK_RIGHT] & 0xF0)
-			gameFrameWork->m_pScene->shieldXpos += 1;
+			gameFrameWork->m_pScene->shieldXpos += 20 * elapsedTime * 0.01;
 		if (pKeyBuffer[VK_SPACE] & 0xF0)
 		{
 			if (!bShootState)
