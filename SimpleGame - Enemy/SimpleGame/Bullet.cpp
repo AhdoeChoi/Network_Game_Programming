@@ -20,6 +20,8 @@ BulletObject::BulletObject() : m_hp(0), m_size(0), m_type(0)
 BulletObject::BulletObject(int type, float xpos, float ypos, float zpos, float vecx, float vecy, float vecz, int team):
 	m_type(type)
 {
+	m_team = team;
+
 	m_active = true;
 	m_pos.fxpos = xpos;
 	m_pos.fypos = ypos;
@@ -92,4 +94,14 @@ void BulletObject::LostBullet()
 		m_active = false;
 	else if (m_pos.fypos < -400)
 		m_active = false;
+}
+
+
+bool BulletObject::collision(pos target, int size)
+{
+	if (m_pos.fxpos + m_size / 2 > target.fxpos - size / 2 && m_pos.fxpos - m_size / 2 < target.fxpos + size / 2 &&
+		m_pos.fypos + m_size / 2 > target.fypos - size / 2 && m_pos.fypos - m_size / 2 < target.fypos + size / 2)
+		return true;
+	else
+		return false;
 }

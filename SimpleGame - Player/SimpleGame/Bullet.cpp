@@ -96,3 +96,12 @@ void BulletObject::LostBullet()
 	else if (m_pos.fypos < -400)
 		m_active = false;
 }
+
+bool BulletObject::collision(pos target, int size)
+{
+	if (m_pos.fxpos + m_size / 2 > target.fxpos - size / 2 && m_pos.fxpos - m_size / 2 < target.fxpos + size / 2 &&
+		m_pos.fypos + m_size / 2 > target.fypos - size / 2 && m_pos.fypos - m_size / 2 < target.fypos + size / 2)
+		return true;
+	else
+		return false;
+}

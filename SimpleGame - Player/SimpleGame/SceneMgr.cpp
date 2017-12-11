@@ -44,6 +44,7 @@ SceneMgr::~SceneMgr()
 
 	}
 	delete m_pEnemyClass;
+	delete[] m_pbullet;
 }
 
 void SceneMgr::Update(DWORD elapsedTime)
@@ -60,7 +61,7 @@ void SceneMgr::Update(DWORD elapsedTime)
 	CreateBullet(m_Enemy);
 
 	total_frame += elapsedTime;
-	if (total_frame > 2000)
+	if (total_frame > 6000)
 	{
 		m_Player.building[0].Bullet.IsCoolTime = true;
 		m_Player.building[1].Bullet.IsCoolTime = true;
@@ -78,10 +79,10 @@ void SceneMgr::Update(DWORD elapsedTime)
 
 	
 	m_Player.Shield.Pos.fxpos = shieldXpos;
-
 	m_Player.Shield.Pos.fypos = shieldYpos;
 
 
+	IsCollide();
 	/*플레이어 업데이트*/
 	//m_pPlayerClass->Update(m_pPlayer,elapsedTime);
 
@@ -100,7 +101,7 @@ void SceneMgr::Update(DWORD elapsedTime)
 				m_pbullet[i]->~BulletObject();
 		}
 	}
-	
+	//cout << m_Player.Shield.ihp << endl;
 	Animate();
 }
 
@@ -207,16 +208,27 @@ void SceneMgr::Render()
 		50,
 		1, 1, 1, 1);
 	//m_renderer->DrawSolidRect(m_pEnemy);
-	for (int i = 0; i < 500; i++)
+	for (int i = 0; i < MAX_BULLET_COUNT; i++)
 	{
-		if (m_pbullet[i])
+		if (m_pbullet[i] && m_pbullet[i]->GetActive())
 			m_pbullet[i]->render(m_renderer);
 	}
 }
 
-bool SceneMgr::IsCollide(BulletObject * bullet, Building & building)
+bool SceneMgr::IsCollide()
 {
-	
+	for (int i = 0; i < MAX_BULLET_COUNT; i++)
+	{
+		if (!m_pbullet[i] || !m_pbullet[i]->m_active)
+			continue;
+		else if (m_pbullet[i]->m_team == ENEMY_TEAM && m_pbullet[i]->collision(m_Player.Shield.Pos, PLAYER_SIZE))
+		{
+			m_Player.Shield.ihp -= m_pbullet[i]->m_hp;
+			m_pbullet[i]->m_active = false;
+		}
+		else if (m_pbullet[i]->m_team == PLAYER_TEAM && m_pbullet[i]->collision(m_Enemy.Shield.Pos, PLAYER_SIZE))
+			m_pbullet[i]->m_active = false;
+	}
 	
 	
 	

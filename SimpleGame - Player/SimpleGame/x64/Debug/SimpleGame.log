@@ -1,2 +1,22 @@
-﻿  SimpleGame.vcxproj -> C:\Users\hong7\Desktop\Network_Game_Programming\SimpleGame - Player\x64\Debug\넷겜플 텀프 Player.exe
+﻿  SceneMgr.cpp
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(47): warning C4154: 배열 식을 삭제했습니다. 포인터로 변환이 제공됩니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(81): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(82): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(94): warning C4244: '인수': 'DWORD'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(99): warning C4244: '인수': 'DWORD'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(304): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(378): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(379): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(381): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(382): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(389): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(415): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(422): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(446): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(453): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(477): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(484): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(508): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\hong7\desktop\network_game_programming\simplegame - player\simplegame\scenemgr.cpp(515): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SimpleGame.vcxproj -> C:\Users\hong7\Desktop\Network_Game_Programming\SimpleGame - Player\x64\Debug\넷겜플 텀프 Player.exe
   SimpleGame.vcxproj -> C:\Users\hong7\Desktop\Network_Game_Programming\SimpleGame - Player\x64\Debug\넷겜플 텀프 Player.pdb (Partial PDB)

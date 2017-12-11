@@ -28,6 +28,7 @@ using namespace std;
 #define DIR_UP				0x10
 #define DIR_DOWN			0x20
 
+#define PLAYER_SIZE			50
 
 
 ////////// 구조체 선언은 여기에 

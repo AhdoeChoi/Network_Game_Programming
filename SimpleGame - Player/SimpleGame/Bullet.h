@@ -29,4 +29,6 @@ public:
 
 	void		LostBullet();
 	pos			GetBulletPosition() { return m_pos; }
+
+	bool		collision(pos target, int size);
 };

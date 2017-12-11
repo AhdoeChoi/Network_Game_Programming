@@ -66,9 +66,6 @@ void RenderScene(void)
 
 		CurrentTime = currTime;
 		//===============================================
-
-
-
 	}
 
 

@@ -4,7 +4,8 @@
 
 class BulletObject
 {
-private:
+public:
+	int		m_team;
 	int		m_type;
 	pos		m_pos;
 	pos		m_vector;
@@ -27,4 +28,6 @@ public:
 	bool		GetActive();
 
 	void		LostBullet();
+
+	bool		collision(pos target, int size);
 };
