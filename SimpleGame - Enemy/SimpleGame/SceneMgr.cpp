@@ -27,6 +27,10 @@ SceneMgr::SceneMgr(int x, int y)
 		m_textureid[0] = m_renderer->CreatePngTexture("TOPA.png");
 		m_textureid[1] = m_renderer->CreatePngTexture("TOPB.png");
 		m_textureid[2] = m_renderer->CreatePngTexture("TOPC.png");
+		m_textureid[3] = m_renderer->CreatePngTexture("Bullet.png");
+		m_textureid[4] = m_renderer->CreatePngTexture("Character_Player.png");
+		m_textureid[5] = m_renderer->CreatePngTexture("Character_Enemy.png");
+		m_textureid[6] = m_renderer->CreatePngTexture("Character_Bullet.png");
 		map_id = m_renderer->CreatePngTexture("Map.png");
 
 		m_Player.Shield.Bullet.IsCoolTime = false;
@@ -145,11 +149,12 @@ void SceneMgr::Render()
 	//3.³»²¨ ½¯µå ±×·Á
 
 	
-		m_renderer->DrawSolidRect(m_Player.Shield.Pos.fxpos,
+		m_renderer->DrawTexturedRect(m_Player.Shield.Pos.fxpos,
 			m_Player.Shield.Pos.fypos,
 			m_Player.Shield.Pos.fzpos,
 			50,
-			0, 0, 1, 1
+			0, 0, 1, 1,
+			m_textureid[4]
 		);
 
 	//m_pPlayerClass->Render();
@@ -203,16 +208,17 @@ void SceneMgr::Render()
 	//2. Àû ÃÑ¾Ë ±×·Á
 	// 3. Àû ½¯µå ±×·Á
 	
-		m_renderer->DrawSolidRect(m_Enemy.Shield.Pos.fxpos,
-			m_Enemy.Shield.Pos.fypos,
-			m_Enemy.Shield.Pos.fzpos,
-			50,
-			1, 1, 1, 1);
+	m_renderer->DrawTexturedRect(m_Enemy.Shield.Pos.fxpos,
+		m_Enemy.Shield.Pos.fypos,
+		m_Enemy.Shield.Pos.fzpos,
+		50,
+		1, 1, 1, 1,
+		m_textureid[5]);
 	//m_renderer->DrawSolidRect(m_pEnemy);
 	for (int i = 0; i < 500; i++)
 	{
 		if (m_pbullet[i] && m_pbullet[i]->GetActive())
-			m_pbullet[i]->render(m_renderer);
+			m_pbullet[i]->render(m_renderer, m_textureid[3]);
 	}
 }
 
