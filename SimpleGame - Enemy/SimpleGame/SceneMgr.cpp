@@ -32,7 +32,7 @@ SceneMgr::SceneMgr(int x, int y)
 		m_textureid[5] = m_renderer->CreatePngTexture("Character_Enemy.png");
 		m_textureid[6] = m_renderer->CreatePngTexture("Character_Bullet.png");
 		map_id = m_renderer->CreatePngTexture("Map.png");
-		m_Player.Shield.ihp = 100.0f;
+
 		m_Player.Shield.Bullet.IsCoolTime = false;
 
 }
@@ -114,7 +114,7 @@ void SceneMgr::Render()
 {
 	//////////////////////////////////////
 	//¸Ê ±×·Á
-	m_renderer->DrawTexturedRect(0, 0, 1, 800, 1, 1, 1, 1, map_id, 0.9f);
+	m_renderer->DrawTexturedRect(0, 0, 1, 800, 1, 1, 1, 1, map_id);
 	//³» Á¤º¸ ±×·Á m_pPlayer
 	//1.³»²¨ ºôµù ±×·Á
 	for (int i = 0; i < 3; ++i)
@@ -124,24 +124,24 @@ void SceneMgr::Render()
 				m_Player.building[i].Info.Pos.fypos,
 				m_Player.building[i].Info.Pos.fzpos,
 				50,
-				1, 1, 1, 1,
-				m_textureid[0], 0
+				1, 0, 0, 1,
+				m_textureid[0]
 			);
 		if (m_Player.building[i].Info.istate == TOPB)
 			m_renderer->DrawTexturedRect(m_Player.building[i].Info.Pos.fxpos,
 				m_Player.building[i].Info.Pos.fypos,
 				m_Player.building[i].Info.Pos.fzpos,
 				50,
-				1, 1, 1, 1,
-				m_textureid[1], 0
+				1, 0, 0, 1,
+				m_textureid[1]
 			);
 		if (m_Player.building[i].Info.istate == TOPC)
 			m_renderer->DrawTexturedRect(m_Player.building[i].Info.Pos.fxpos,
 				m_Player.building[i].Info.Pos.fypos,
 				m_Player.building[i].Info.Pos.fzpos,
 				50,
-				1, 1, 1, 1,
-				m_textureid[2], 0
+				1, 0, 0, 1,
+				m_textureid[2]
 			);
 	}
 	//2.³»²¨ ÃÑ¾Ë ±×·Á
@@ -153,10 +153,9 @@ void SceneMgr::Render()
 			m_Player.Shield.Pos.fypos,
 			m_Player.Shield.Pos.fzpos,
 			50,
-			1, 1, 1, 1,
-			m_textureid[4], 0
+			0, 0, 1, 1,
+			m_textureid[4]
 		);
-		m_renderer->DrawSolidRectGauge(m_Player.Shield.Pos.fxpos, m_Player.Shield.Pos.fypos + 20, m_Player.Shield.Pos.fzpos, 30, 5, 1, 0, 0, 1, (float)m_Player.Shield.ihp / 100.0f, 0);
 
 	//m_pPlayerClass->Render();
 
@@ -183,24 +182,24 @@ void SceneMgr::Render()
 				m_Enemy.building[i].Info.Pos.fypos,
 				m_Enemy.building[i].Info.Pos.fzpos,
 				50,
-				1, 1, 1, 1,
-				m_textureid[0], 0
+				1, 0, 0, 1,
+				m_textureid[0]
 			);
 		if (m_Enemy.building[i].Info.istate == TOPB)
 			m_renderer->DrawTexturedRect(m_Enemy.building[i].Info.Pos.fxpos,
 				m_Enemy.building[i].Info.Pos.fypos,
 				m_Enemy.building[i].Info.Pos.fzpos,
 				50,
-				1, 1, 1, 1,
-				m_textureid[1], 0
+				1, 0, 0, 1,
+				m_textureid[1]
 			);
 		if (m_Enemy.building[i].Info.istate == TOPC)
 			m_renderer->DrawTexturedRect(m_Enemy.building[i].Info.Pos.fxpos,
 				m_Enemy.building[i].Info.Pos.fypos,
 				m_Enemy.building[i].Info.Pos.fzpos,
 				50,
-				1, 1, 1, 1,
-				m_textureid[2], 0
+				1, 0, 0, 1,
+				m_textureid[2]
 			);
 		//>>>>>>> c84b196718a2d6ae25bcee6ba025a0aff97e8c51
 	}
@@ -214,8 +213,7 @@ void SceneMgr::Render()
 		m_Enemy.Shield.Pos.fzpos,
 		50,
 		1, 1, 1, 1,
-		m_textureid[5], 0);
-	m_renderer->DrawSolidRectGauge(m_Enemy.Shield.Pos.fxpos, m_Enemy.Shield.Pos.fypos + 20, m_Enemy.Shield.Pos.fzpos, 30, 5, 1, 0, 0, 1, m_Enemy.Shield.ihp, 0);
+		m_textureid[5]);
 	//m_renderer->DrawSolidRect(m_pEnemy);
 	for (int i = 0; i < 500; i++)
 	{
@@ -286,13 +284,13 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 	{
 		if (keystate == 0)
 			//m_renderer->DrawSolidRect(0, 100, 0, 50, 1, 0, 0, 1);
-			m_renderer->DrawTexturedRect(0, 100, 0, 100, 1, 1, 1, 1, m_textureid[0], 0);
+			m_renderer->DrawTexturedRect(0, 100, 0, 100, 1, 0, 0, 1, m_textureid[0]);
 		if (keystate == 1)
 			//m_renderer->DrawSolidRect(0, 100, 0, 50, 0, 1, 0, 1);
-			m_renderer->DrawTexturedRect(0, 100, 0, 100, 1, 1, 1, 1, m_textureid[1], 0);
+			m_renderer->DrawTexturedRect(0, 100, 0, 100, 1, 0, 0, 1, m_textureid[1]);
 		if (keystate == 2)
 			//m_renderer->DrawSolidRect(0, 100, 0, 50, 0, 0, 1, 1);
-			m_renderer->DrawTexturedRect(0, 100, 0, 100, 1, 1, 1, 1, m_textureid[2], 0);
+			m_renderer->DrawTexturedRect(0, 100, 0, 100, 1, 0, 0, 1, m_textureid[2]);
 	}
 
 
@@ -337,13 +335,13 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 	{
 		if (m_ppPlayerClass[i]->m_Building.Info.istate == TOPA)
 			//m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 0, 0, 1);
-			m_renderer->DrawTexturedRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 1, 1, 1, m_textureid[0], 0);
+			m_renderer->DrawTexturedRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 0, 0, 1, m_textureid[0]);
 		if (m_ppPlayerClass[i]->m_Building.Info.istate == TOPB)
 			//m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 0, 1, 0, 1);
-			m_renderer->DrawTexturedRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 1, 1, 1, m_textureid[1], 0);
+			m_renderer->DrawTexturedRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 0, 0, 1, m_textureid[1]);
 		if (m_ppPlayerClass[i]->m_Building.Info.istate == TOPC)
 			//m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 0, 0, 1, 1);
-			m_renderer->DrawTexturedRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 1, 1, 1, m_textureid[2], 0);
+			m_renderer->DrawTexturedRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 0, 0, 1, m_textureid[2]);
 	}
 
 	if (m_iSetPlayerIndex == 3) // ¹èÄ¡ ¿Ï·á
