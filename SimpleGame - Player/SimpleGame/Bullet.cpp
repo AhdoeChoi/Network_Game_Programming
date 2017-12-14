@@ -77,9 +77,7 @@ void BulletObject::update(Renderer *renderer, float elapsedTime)
 
 void BulletObject::render(Renderer *renderer, int texture)
 {
-	if(m_team == PLAYER_TEAM)
 		renderer->DrawTexturedRect(m_pos.fxpos, m_pos.fypos, m_pos.fzpos, m_size, m_color.fxpos, m_color.fypos, m_color.fzpos, 1, texture);
-
 }
 
 bool BulletObject::GetActive()

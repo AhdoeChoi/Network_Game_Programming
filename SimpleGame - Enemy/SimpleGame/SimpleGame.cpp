@@ -77,14 +77,14 @@ void RenderScene(void)
 	{
 		if (pKeyBuffer[VK_UP] & 0xF0)
 			if (gameFrameWork->m_pScene->m_Player.Shield.Pos.fypos < 0)
-				gameFrameWork->m_pScene->shieldYpos += 20 * elapsedTime * 0.01;
+				gameFrameWork->m_pScene->shieldYpos += 20 * elapsedTime * 0.03;
 		if (pKeyBuffer[VK_DOWN] & 0xF0)
 			if (gameFrameWork->m_pScene->m_Player.Shield.Pos.fypos > -400)
-				gameFrameWork->m_pScene->shieldYpos -= 20 * elapsedTime * 0.01;
+				gameFrameWork->m_pScene->shieldYpos -= 20 * elapsedTime * 0.03;
 		if (pKeyBuffer[VK_LEFT] & 0xF0)
-			gameFrameWork->m_pScene->shieldXpos -= 20 * elapsedTime * 0.01;
+			gameFrameWork->m_pScene->shieldXpos -= 20 * elapsedTime * 0.03;
 		if (pKeyBuffer[VK_RIGHT] & 0xF0)
-			gameFrameWork->m_pScene->shieldXpos += 20 * elapsedTime * 0.01;
+			gameFrameWork->m_pScene->shieldXpos += 20 * elapsedTime * 0.03;
 		if (pKeyBuffer[VK_SPACE] & 0xF0)
 		{
 			if (!bShootState)

@@ -1,20 +1,2 @@
-﻿  SceneMgr.cpp
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(54): warning C4154: 배열 식을 삭제했습니다. 포인터로 변환이 제공됩니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(87): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(89): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(100): warning C4244: '인수': 'DWORD'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(105): warning C4244: '인수': 'DWORD'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(309): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(382): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(383): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(385): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(386): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(393): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(419): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(426): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(450): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(457): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(483): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\곽범식\desktop\network_game_programming\simplegame - enemy\simplegame\scenemgr.cpp(490): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  SimpleGame.vcxproj -> C:\Users\곽범식\Desktop\Network_Game_Programming\SimpleGame - Enemy\x64\Debug\넷겜플 텀프 Enemy.exe
+﻿  SimpleGame.vcxproj -> C:\Users\곽범식\Desktop\Network_Game_Programming\SimpleGame - Enemy\x64\Debug\넷겜플 텀프 Enemy.exe
   SimpleGame.vcxproj -> C:\Users\곽범식\Desktop\Network_Game_Programming\SimpleGame - Enemy\x64\Debug\넷겜플 텀프 Enemy.pdb (Partial PDB)

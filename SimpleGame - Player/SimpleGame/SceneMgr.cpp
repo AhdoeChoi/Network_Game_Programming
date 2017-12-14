@@ -218,7 +218,6 @@ void SceneMgr::Render()
 	{
 		if (m_pbullet[i] && m_pbullet[i]->GetActive())
 		{
-			if(m_pbullet[i]->m_pos.fxpos == m_Player.Shield.Pos.fxpos)
 				m_pbullet[i]->render(m_renderer, m_textureid[3]);
 		}
 	}
