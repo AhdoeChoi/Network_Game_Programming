@@ -1,2 +1,11 @@
-﻿  SimpleGame.vcxproj -> C:\Users\곽범식\Desktop\Network_Game_Programming\SimpleGame - Enemy\x64\Debug\넷겜플 텀프 Enemy.exe
-  SimpleGame.vcxproj -> C:\Users\곽범식\Desktop\Network_Game_Programming\SimpleGame - Enemy\x64\Debug\넷겜플 텀프 Enemy.pdb (Partial PDB)
+﻿  GameFrameWork.cpp
+c:\users\choiahdoe\desktop\넷겜 깃 데탑 새로한거\simplegame - enemy\simplegame\gameframework.cpp(66): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\um\winsock2.h(1830): note: 'inet_addr' 선언을 참조하십시오.
+c:\users\choiahdoe\desktop\넷겜 깃 데탑 새로한거\simplegame - enemy\simplegame\gameframework.cpp(97): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\choiahdoe\desktop\넷겜 깃 데탑 새로한거\simplegame - enemy\simplegame\gameframework.cpp(166): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\choiahdoe\desktop\넷겜 깃 데탑 새로한거\simplegame - enemy\simplegame\gameframework.cpp(167): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  건너뛰고 있습니다... (관련된 변경 내용 없음)
+  SimpleGame.cpp
+  SimpleGame.vcxproj -> C:\Users\ChoiAhDoe\Desktop\넷겜 깃 데탑 새로한거\SimpleGame - Enemy\x64\Debug\넷겜플 텀프 Enemy.exe
+  SimpleGame.vcxproj -> C:\Users\ChoiAhDoe\Desktop\넷겜 깃 데탑 새로한거\SimpleGame - Enemy\x64\Debug\넷겜플 텀프 Enemy.pdb (Partial PDB)

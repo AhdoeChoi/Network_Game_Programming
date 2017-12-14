@@ -1,0 +1,10 @@
+﻿  stdafx.cpp
+c:\users\choiahdoe\desktop\넷겜 깃 데탑 새로한거\simplegame - server\simplegame - server\stdafx.cpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\choiahdoe\desktop\넷겜 깃 데탑 새로한거\simplegame - server\simplegame - server\stdafx.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\choiahdoe\desktop\넷겜 깃 데탑 새로한거\simplegame - server\simplegame - server\targetver.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  SimpleGameServer.cpp
+c:\users\choiahdoe\desktop\넷겜 깃 데탑 새로한거\simplegame - server\simplegame - server\simplegameserver.cpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  GameSever.cpp
+  코드를 생성하고 있습니다...
+  SimpleGame - Server.vcxproj -> C:\Users\ChoiAhDoe\Desktop\넷겜 깃 데탑 새로한거\SimpleGame - Server\Debug\SimpleGame - Server.exe
+  SimpleGame - Server.vcxproj -> C:\Users\ChoiAhDoe\Desktop\넷겜 깃 데탑 새로한거\SimpleGame - Server\Debug\SimpleGame - Server.pdb (Partial PDB)

@@ -30,7 +30,7 @@ using namespace std;
 
 #define PLAYER_SIZE			50
 
-
+#define SERVERIP   "127.0.0.1"
 ////////// 구조체 선언은 여기에 
 
 typedef struct pos

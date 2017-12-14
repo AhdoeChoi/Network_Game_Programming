@@ -36,6 +36,14 @@ void RenderScene(void)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0f, 0.3f, 0.3f, 1.0f);
 
+
+	//서버와 연결 (대기방 입장)
+
+	
+
+
+
+
 	//gameFrameWork->m_pScene->BuildObject(); //빌딩배치
 
 

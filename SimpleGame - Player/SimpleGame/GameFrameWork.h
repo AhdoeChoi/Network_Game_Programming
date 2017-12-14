@@ -28,7 +28,9 @@ public:
 
 	void				ServerRunning();
 	void				CloseSocket();
-
+public:
+	//대기방 서버 함수관련부분
+	void				ConnectServer();
 public:
 	GameFrameWork();
 	~GameFrameWork();
