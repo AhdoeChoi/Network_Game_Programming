@@ -40,30 +40,109 @@ bool GameFrameWork::SendRequest()
 	PrintMenu();
 	cin >> PlayerChoiceNumber;
 
-	int recvResult = 0;
+	int recvResult = false;
+	int roomNumber = 0;
+	send(server_socket, (char*)&PlayerChoiceNumber, sizeof(PlayerChoiceNumber), 0); //서버에게 결과값 요청하기
 
-	send(server_socket, (char*)&PlayerChoiceNumber, sizeof(PlayerChoiceNumber), 0);
-	if (PlayerChoiceNumber == 1)
+	switch (PlayerChoiceNumber)
 	{
-		recv(server_socket, (char*)&recvResult, sizeof(recvResult), 0);
-		cout << recvResult << endl;
+	case 1: // 방 만들기
+		recv(server_socket, (char*)&recvResult, sizeof(recvResult), 0); // 서버의 결과값 받아오기
+		if (recvResult == 1)
+		{
+			char roomName[20];
+			cout << "방 제목 : ";
+			cin >> roomName;
+
+			send(server_socket, roomName, strlen(roomName)+1, 0);
+
+			CreateHostServer();
+			return true;
+		}
+		if (recvResult == 0)
+		{
+			cout << "에러!^_^" << endl;
+			return false;
+		}
+		break;
+	case 2: // 방 참가
+		cout << " 참가하고 싶은 방 번호 : ";
+		cin >> roomNumber;
+		send(server_socket, (char*)&roomNumber, sizeof(roomNumber), 0);
+
+		recv(server_socket, (char*)&recvResult, sizeof(recvResult), 0); // 서버의 결과값 받아오기
+		if (recvResult == 1)
+		{
+			cout << "찾아땅" <<endl;
+			EnterHostServer();
+			return true;
+		}
+		if (recvResult == 0)
+		{
+			cout << "못찾아땅" << endl;
+		}
+
+		break;
+
+	case 3: // 방목록보기
+		for (int i = 0; i < MAX_HOST_NUM; ++i)
+		{
+			recv(server_socket, (char*)&hostlist[i], sizeof(Host), 0);
+		}
+		for (int i = 0; i < MAX_HOST_NUM; ++i)
+		{
+			cout << "-------------------------------------------" << endl;
+			cout << " 방 제목 : " << hostlist[i].name << endl;
+			cout << " 아이피 주소" << inet_ntoa(hostlist[i].ip.sin_addr) << endl;
+			cout << " 방 번호 : " <<hostlist[i].number << endl;
+			cout << "-------------------------------------------" << endl;
+
+		}
 		return false;
+
 	}
-	return true;
+	return false;
 }
 
 GameFrameWork::GameFrameWork()
 {
+
+	::ZeroMemory(&hostlist, sizeof(hostlist));
 	WSADATA wsa;
 	if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0)
 		return;
 	//대기방에서 할 작업들
 	ConnectServer();
 
-	while (SendRequest()) //새로 추가한 함수
+	while (true) //새로 추가한 함수
 	{
-
+		
+		if (SendRequest())
+		{
+			break;
+		}
 	}
+	
+
+	
+
+	//// closesocket()
+	//closesocket(listen_sock);
+
+	//// 윈속 종료
+	//WSACleanup();
+
+
+}
+
+
+GameFrameWork::~GameFrameWork()
+{
+	
+}
+
+void GameFrameWork::CreateHostServer()
+{
 	// 대기방을 위한 코드로 채워야함
 
 
@@ -89,8 +168,8 @@ GameFrameWork::GameFrameWork()
 	int nSockOpt = 1;
 	setsockopt(listen_sock, SOL_SOCKET, SO_REUSEADDR, (char*)&nSockOpt, sizeof(nSockOpt));
 	retval = bind(listen_sock, (SOCKADDR *)&serveraddr, sizeof(serveraddr));
-	
-	if (retval == SOCKET_ERROR) 
+
+	if (retval == SOCKET_ERROR)
 		err_display("bind()");
 
 	// listen()
@@ -102,7 +181,7 @@ GameFrameWork::GameFrameWork()
 	// 데이터 통신에 사용할 변수
 
 	int addrlen;
-	
+
 	// accept() 이부분 while문 돌면서 멀티클라이언트 처리하게 바꿔야함
 	addrlen = sizeof(clientaddr);
 	client_socket = accept(listen_sock, (SOCKADDR *)&clientaddr /*접속한 클라이언트의 주소정보로 채워짐*/, &addrlen);
@@ -114,22 +193,32 @@ GameFrameWork::GameFrameWork()
 
 	// 접속한 클라이언트 정보 출력
 	cout << "연걸" << endl;
-
-	
-
-	//// closesocket()
-	//closesocket(listen_sock);
-
-	//// 윈속 종료
-	//WSACleanup();
-
-
 }
 
-
-GameFrameWork::~GameFrameWork()
+void GameFrameWork::EnterHostServer()
 {
-	
+	int retval;
+
+	// socket()
+	client_socket = socket(AF_INET, SOCK_STREAM, 0);
+	if (client_socket == INVALID_SOCKET) err_quit("socket()");
+
+	// connect()
+	SOCKADDR_IN serveraddr;
+	ZeroMemory(&serveraddr, sizeof(serveraddr));
+	/*serveraddr.sin_family = AF_INET;
+	serveraddr.sin_addr.s_addr = inet_addr(SERVERIP);
+	serveraddr.sin_port = htons(SERVERPORT);*/
+	retval = recv(server_socket, (char*)&serveraddr, sizeof(serveraddr), 0);
+	serveraddr.sin_port = ntohs(9000);
+	retval = connect(client_socket, (SOCKADDR *)&serveraddr, sizeof(serveraddr));
+
+
+	cout << ntohs(serveraddr.sin_port) << endl;
+	//if (retval == SOCKET_ERROR) err_quit("connect()");
+
+
+	cout << "연걸" << endl;
 }
 
 void GameFrameWork::Update(float elapsedTime)
@@ -210,8 +299,9 @@ void GameFrameWork::ServerRunning()
 
 	m_Player.Shield.Pos.fxpos = -m_pScene->shieldXpos;
 	m_Player.Shield.Pos.fypos = -m_pScene->shieldYpos;
-	RecvFromOpponent(&client_socket, m_Enemy, sizeof(m_Enemy), 0);
 	SendToOpponent(&client_socket, m_Player, sizeof(m_Player), 0); //내 정보 보내고
+	RecvFromOpponent(&client_socket, m_Enemy, sizeof(m_Enemy), 0);
+	
 
 
 

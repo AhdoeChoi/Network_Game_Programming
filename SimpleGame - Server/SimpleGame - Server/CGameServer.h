@@ -51,8 +51,8 @@ public:
 	void SaveResult(bool result); // return값이 true면 host 1승 참가자 패
 	Host AddHostList(char *name); //HostServer를 생성한다는 요청을 받으면 대기실의 이름을 받아와서 host IP와
 								  //비어있는 번호를 할당해서 구조체를 만든 후 리턴해준다.
-	bool SearchHostList(int num); //특정 방 번호를 가진 HostServer의 , Ip 포트번호를 send해준다.
-	void SendHostList(); // 서버에 등록된 Host의 번호, 이름을 Send()해준다.
+	static bool SearchHostList(int num,Host * findhost); //특정 방 번호를 가진 HostServer의 , Ip 포트번호를 send해준다.
+	static void SendHostList(SOCKET s, SOCKADDR_IN client_addr); // 서버에 등록된 Host의 번호, 이름을 Send()해준다.
 public:
 	CGameServer();
 	~CGameServer();

@@ -3,6 +3,8 @@
 #include "SceneMgr.h"
 class GameFrameWork
 {
+public:
+	Host hostlist[MAX_HOST_NUM]; // 클라이언트 호스트의 정보를 저장 할 구조체
 public: //소켓
 	SOCKET				server_socket;
 	SOCKET				client_socket;
@@ -38,5 +40,8 @@ public:
 public:
 	GameFrameWork();
 	~GameFrameWork();
+public:
+	void				CreateHostServer();
+	void				EnterHostServer();
 };
 

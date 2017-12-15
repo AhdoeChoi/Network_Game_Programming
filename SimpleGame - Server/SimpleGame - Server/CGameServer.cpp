@@ -107,25 +107,46 @@ bool CGameServer::CreateHostServer(SOCKET s, SOCKADDR_IN client_addr)
 {
 	char name[20];
 	// 방이름 recv 받아야함
-	for(int i = 0; i < MAX_HOST_NUM; i++)
+	
+
+
+	int sendRequest = 0;
+
+	for (int i = 0; i < MAX_HOST_NUM; i++)
+	{
+		/*cout << hostlist[i].name << endl;
+		cout << inet_ntoa(hostlist[i].ip.sin_addr) << endl;
+		cout << hostlist[i].number << endl;*/
+
 		if (hostlist[i].number == 0)
 		{
+
+			sendRequest = 1; //방 잘만들어 졌다고 알림
+			send(s, (char*)&sendRequest, sizeof(sendRequest), 0);
+			recv(s, name, strlen(name) + 1, 0);
+
+			cout << name << endl;
+
 			hostnum++;
-			hostlist[i].number == hostnum;
+			strcpy_s(hostlist[i].name, name);
+			hostlist[i].number = hostnum;
 			hostlist[i].ip = client_addr;
+
+			/*cout << hostlist[i].name << endl;
+			cout << inet_ntoa(hostlist[i].ip.sin_addr) << endl;
+			cout << hostlist[i].number << endl;*/
 			//strcpy(hostlist[i].name, name);
 			return true;
 		}
+	}
+		
+	send(s, (char*)&sendRequest, sizeof(sendRequest), 0); //방만들기 실패했다고 알림
+
 	return false;
 }
 
 bool CGameServer::EnterHostServer(int number)
 {
-	if (SearchHostList(number))
-	{
-		return true;
-	}
-	
 	return false;
 }
 
@@ -160,52 +181,82 @@ Host CGameServer::AddHostList(char * name)
 	//필요없을거같음
 }
 
-bool CGameServer::SearchHostList(int num)
+bool CGameServer::SearchHostList(int num, Host * findHost)
 {
 	for (int i = 0; i < MAX_HOST_NUM; i++)
 		if (hostlist[i].number == num)
+		{
+			*findHost = hostlist[i];
 			return true;
+		}
 	return false;
 }
 
-void CGameServer::SendHostList()
+void CGameServer::SendHostList(SOCKET s, SOCKADDR_IN client_addr) //방 목록 보내주는거
 {
+
+	for (int i = 0; i < MAX_HOST_NUM; ++i)
+	{
+		send(s, (char*)&hostlist[i], sizeof(Host), 0);
+	}
+	//send(s, (char*)&hostlist, sizeof(hostlist) * MAX_HOST_NUM, 0);
+	
 	//send() 하면 끝
 }
 
 DWORD WINAPI CGameServer::ProcessClient(LPVOID arg)
 {
-
+	Host FindHost;
 
 	SOCKET client_sock_req = (SOCKET)arg;
 
 	SOCKADDR_IN clientaddr;
 
-	int choiceNumber;
+	int choiceNumber; //클라이언트의 요청값
 	int retval = 0;
+
+	int iRequestEnterRoomNumber = 0;
 	int addrlen = sizeof(clientaddr);
 	getpeername(client_sock_req, (SOCKADDR *)&clientaddr, &addrlen);
 
-
-	retval = recv(client_sock_req, (char*)&choiceNumber, sizeof(int), 0);
-	if (retval == SOCKET_ERROR) {
-		err_display("recv()");
-
-	}
-	int sendRequest = 999;
-	switch (choiceNumber)
+	while (true)
 	{
-	case 1:
-		if (CreateHostServer(client_sock_req, clientaddr))
-		{
-			send(client_sock_req, (char*)&sendRequest, sizeof(sendRequest), 0);
+		retval = recv(client_sock_req, (char*)&choiceNumber, sizeof(int), 0); //클라이언트의 요청값 받아옴
+		if (retval == SOCKET_ERROR) {
+			err_display("recv()");
+
 		}
-		break;
-	case 2:
-		break;
-	case 3:
-		break;
+		int SearchResult = 0;
+
+		switch (choiceNumber)
+		{
+		case 1: //클라이언트가 방을 만들고 싶어 하면
+			CreateHostServer(client_sock_req, clientaddr);
+
+			break;
+		case 2:
+			recv(client_sock_req, (char*)&iRequestEnterRoomNumber, sizeof(iRequestEnterRoomNumber), 0);
+
+			if (SearchHostList(iRequestEnterRoomNumber, &FindHost) == true)
+			{
+				SearchResult = 1;
+				send(client_sock_req, (char*)&SearchResult, sizeof(SearchResult), 0);  //방을 찾았다고 알림
+
+				send(client_sock_req, (char*)&FindHost.ip, sizeof(FindHost.ip), 0);
+				//
+			}
+			else
+			{
+				SearchResult = 0;
+				send(client_sock_req, (char*)&SearchResult, sizeof(SearchResult), 0);
+			}
+			break;
+		case 3:
+			SendHostList(client_sock_req, clientaddr);
+			break;
+		}
 	}
+	
 	return 0;
 }
 

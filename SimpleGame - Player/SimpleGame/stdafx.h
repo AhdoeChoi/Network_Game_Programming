@@ -29,7 +29,7 @@ using namespace std;
 #define DIR_DOWN			0x20
 
 #define PLAYER_SIZE			50
-
+#define MAX_HOST_NUM 10
 #define SERVERIP   "127.0.0.1"
 ////////// 구조체 선언은 여기에 
 
@@ -72,3 +72,11 @@ typedef struct buildings
 	building	building[3];
 	Shield		Shield;
 }Buildings;
+
+
+typedef struct host //생성된 호스트 서버를 저장해 주기 위한 구조체
+{
+	SOCKADDR_IN ip;
+	char name[20];
+	int number;
+}Host;
