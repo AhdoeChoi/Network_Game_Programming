@@ -1,47 +1,11 @@
 #include "stdafx.h"
 #include "GameFrameWork.h"
 
-void GameFrameWork::ConnectServer()
-{
-
-	//대기방에서 할 작업들
-
-
-	// 대기방을 위한 코드로 채워야함
-
-
-	///////////////////// 클라끼리의 송수신하기 위한 소켓 초기화만함
-
-	//int retval;
-
-	//// 윈속 초기화
-	//WSADATA wsa;
-	//if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0)
-	//	return;
-
-	//// socket()
-	//server_socket = socket(AF_INET, SOCK_STREAM, 0);
-	//if (server_socket == INVALID_SOCKET) err_quit("socket()");
-
-	//// connect()
-	//SOCKADDR_IN serveraddr;
-	//ZeroMemory(&serveraddr, sizeof(serveraddr));
-	//serveraddr.sin_family = AF_INET;
-	//serveraddr.sin_addr.s_addr = inet_addr(SERVERIP);
-	//serveraddr.sin_port = htons(SERVERPORT);
-	//retval = connect(server_socket, (SOCKADDR *)&serveraddr, sizeof(serveraddr));
-	////if (retval == SOCKET_ERROR) err_quit("connect()");
-
-
-
-
-}
 
 GameFrameWork::GameFrameWork()
 {
 	//대기방에서 할 작업들
 
-	//ConnectServer();
 
 	// 대기방을 위한 코드로 채워야함
 

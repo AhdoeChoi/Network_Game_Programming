@@ -3,9 +3,6 @@
 #include "SceneMgr.h"
 class GameFrameWork
 {
-public:
-	void				ConnectServer();
-
 public: //╪рдо
 	SOCKET				server_socket;
 	SOCKET				client_socket;
