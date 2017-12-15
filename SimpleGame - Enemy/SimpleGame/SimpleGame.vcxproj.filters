@@ -27,9 +27,6 @@
     <ClInclude Include="targetver.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="object.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -45,15 +42,15 @@
     <ClInclude Include="Bullet.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SimpleGame.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="object.cpp">
@@ -71,12 +68,21 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\SolidRect.fs">
       <Filter>소스 파일\Shaders</Filter>
     </None>
     <None Include="Shaders\SolidRect.vs">
+      <Filter>소스 파일\Shaders</Filter>
+    </None>
+    <None Include="Shaders\SolidRectGauge.fs">
+      <Filter>소스 파일\Shaders</Filter>
+    </None>
+    <None Include="Shaders\SolidRectGauge.vs">
       <Filter>소스 파일\Shaders</Filter>
     </None>
     <None Include="Shaders\SolidRectWithTexture.fs">
@@ -89,6 +95,12 @@
       <Filter>소스 파일\Shaders</Filter>
     </None>
     <None Include="Shaders\SolidRectWithTextureSeq.vs">
+      <Filter>소스 파일\Shaders</Filter>
+    </None>
+    <None Include="Shaders\SolidRectXY.fs">
+      <Filter>소스 파일\Shaders</Filter>
+    </None>
+    <None Include="Shaders\SolidRectXY.vs">
       <Filter>소스 파일\Shaders</Filter>
     </None>
   </ItemGroup>
