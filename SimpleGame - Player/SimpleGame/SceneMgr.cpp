@@ -22,6 +22,10 @@ SceneMgr::SceneMgr(int x, int y)
 	}
 	memset(&m_Enemy, 0, sizeof(m_Enemy));
 
+	for (int i = 0; i < 500; i++)
+		m_pbullet[i] = nullptr;
+
+
 	m_textureid[0] = m_renderer->CreatePngTexture("TOPA.png");
 	m_textureid[1] = m_renderer->CreatePngTexture("TOPB.png");
 	m_textureid[2] = m_renderer->CreatePngTexture("TOPC.png");
@@ -214,7 +218,7 @@ void SceneMgr::Render()
 		50,
 		1, 1, 1, 1,
 		m_textureid[5], 0);
-	m_renderer->DrawSolidRectGauge(m_Enemy.Shield.Pos.fxpos, m_Enemy.Shield.Pos.fypos + 20, m_Enemy.Shield.Pos.fzpos, 30, 5, 1, 0, 0, 1, m_Enemy.Shield.ihp, 0);
+	m_renderer->DrawSolidRectGauge(m_Enemy.Shield.Pos.fxpos, m_Enemy.Shield.Pos.fypos + 20, m_Enemy.Shield.Pos.fzpos, 30, 5, 1, 0, 0, 1, (float)m_Enemy.Shield.ihp/100.0f, 0);
 	//m_renderer->DrawSolidRect(m_pEnemy);
 	for (int i = 0; i < MAX_BULLET_COUNT; i++)
 	{
@@ -231,12 +235,12 @@ bool SceneMgr::IsCollide()
 	{
 		if (!m_pbullet[i] || !m_pbullet[i]->m_active)
 			continue;
-		else if (m_pbullet[i]->m_team == ENEMY_TEAM && m_pbullet[i]->collision(m_Player.Shield.Pos, PLAYER_SIZE))
+		else if (m_pbullet[i]->m_team == ENEMY_TEAM && m_pbullet[i]->collision(m_Player.Shield.Pos, PLAYER_SIZE/4))
 		{
 			m_Player.Shield.ihp -= m_pbullet[i]->m_hp;
 			m_pbullet[i]->m_active = false;
 		}
-		else if (m_pbullet[i]->m_team == PLAYER_TEAM && m_pbullet[i]->collision(m_Enemy.Shield.Pos, PLAYER_SIZE))
+		else if (m_pbullet[i]->m_team == PLAYER_TEAM && m_pbullet[i]->collision(m_Enemy.Shield.Pos, PLAYER_SIZE/4))
 			m_pbullet[i]->m_active = false;
 	}
 	

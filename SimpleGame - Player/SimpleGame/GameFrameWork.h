@@ -28,7 +28,13 @@ public:
 
 	void				ServerRunning();
 	void				CloseSocket();
-
+public:
+	//대기방 서버 함수관련부분
+	void				ConnectServer();
+public:
+	void				PrintMenu();
+	bool				SendRequest(); // 새로 추가
+	int					PlayerChoiceNumber;
 public:
 	GameFrameWork();
 	~GameFrameWork();

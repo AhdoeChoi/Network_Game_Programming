@@ -1,0 +1,7 @@
+﻿  CGameServer.cpp
+c:\users\choiahdoe\desktop\넷겜 깃 데탑 새로한거\simplegame - server\simplegame - server\cgameserver.cpp(65): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\um\winsock2.h(1848): note: 'inet_ntoa' 선언을 참조하십시오.
+c:\users\choiahdoe\desktop\넷겜 깃 데탑 새로한거\simplegame - server\simplegame - server\cgameserver.cpp(114): warning C4553: '==': 의미 없는 연산자입니다. '='을(를) 사용하려고 했습니까?
+c:\users\choiahdoe\desktop\넷겜 깃 데탑 새로한거\simplegame - server\simplegame - server\cgameserver.cpp(108): warning C4101: 'name' :참조되지 않은 지역 변수입니다.
+  SimpleGame - Server.vcxproj -> C:\Users\ChoiAhDoe\Desktop\넷겜 깃 데탑 새로한거\SimpleGame - Server\x64\Debug\SimpleGame - Server.exe
+  SimpleGame - Server.vcxproj -> C:\Users\ChoiAhDoe\Desktop\넷겜 깃 데탑 새로한거\SimpleGame - Server\x64\Debug\SimpleGame - Server.pdb (Partial PDB)
