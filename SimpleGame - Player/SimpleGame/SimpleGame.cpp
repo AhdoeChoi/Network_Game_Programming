@@ -41,6 +41,8 @@ void RenderScene(void)
 
 	
 
+	
+
 
 
 
@@ -54,6 +56,7 @@ void RenderScene(void)
 	}
 	else
 	{
+
 		gameFrameWork->ServerRunning();
 		DWORD currTime = timeGetTime();
 		elapsedTime = currTime - CurrentTime; //한프레임 그리는데 걸리는 시간임
@@ -65,14 +68,26 @@ void RenderScene(void)
 		//===============================================
 
 		//받아온 정보를 업데이트하고 그린다.
+		if (gameFrameWork->m_pScene->IsGameOver()  == 3)
+		{
+			gameFrameWork->Update(elapsedTime);
+			gameFrameWork->Render();
 
-		gameFrameWork->Update(elapsedTime);
-		gameFrameWork->Render();
+			CurrentTime = currTime;
+			cout << elapsedTime;
+			//===============================================
+		}
+		else if (gameFrameWork->m_pScene->IsGameOver() == 1)
+		{
+			gameFrameWork->m_pScene->m_renderer->DrawSolidRect(0, 0, 0, 50, 1, 0, 0, 1,0.5);
+			
+		}
+	
+		else if (gameFrameWork->m_pScene->IsGameOver() == 2)
+		{
+			gameFrameWork->m_pScene->m_renderer->DrawSolidRect(0, 0, 0, 50, 0, 1, 0, 1,0.5);
 
-		CurrentTime = currTime;
-		cout << elapsedTime;
-		//===============================================
-
+		}
 
 
 	}
