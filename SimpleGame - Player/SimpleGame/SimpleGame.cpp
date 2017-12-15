@@ -46,9 +46,7 @@ void RenderScene(void)
 
 	//gameFrameWork->m_pScene->BuildObject(); //빌딩배치
 
-
-
-
+	
 	if (!bBuildObjectFinish) //빌드 오브젝트가 끝나면 서버 동작
 	{
 		gameFrameWork->m_pScene->BuildObject(xpos, &bBuildObjectFinish, iInputKey);

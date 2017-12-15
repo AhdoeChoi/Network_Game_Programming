@@ -4,7 +4,7 @@
 SOCKET	CGameServer::client_socket;
 Host CGameServer::hostlist[100];
 int CGameServer::hostnum = 0;
-
+bool CGameServer::posible_enter[100];
 CGameServer::CGameServer()
 {
 	::ZeroMemory(&hostlist, sizeof(hostlist));
@@ -106,6 +106,7 @@ bool CGameServer::MainServerConnect(SOCKET s)
 bool CGameServer::CreateHostServer(SOCKET s, SOCKADDR_IN client_addr)
 {
 	char name[20];
+	memset(name, '0', sizeof(name));
 	// 방이름 recv 받아야함
 	
 
@@ -128,10 +129,12 @@ bool CGameServer::CreateHostServer(SOCKET s, SOCKADDR_IN client_addr)
 			cout << name << endl;
 
 			hostnum++;
-			strcpy_s(hostlist[i].name, name);
+			//strcpy_s(hostlist[i].name,sizeof(name) * 20, name);
+			strncpy_s(hostlist[i].name,strlen(name)+1, name, strlen(name));
+
 			hostlist[i].number = hostnum;
 			hostlist[i].ip = client_addr;
-
+			posible_enter[i] = true;
 			/*cout << hostlist[i].name << endl;
 			cout << inet_ntoa(hostlist[i].ip.sin_addr) << endl;
 			cout << hostlist[i].number << endl;*/
@@ -184,9 +187,10 @@ Host CGameServer::AddHostList(char * name)
 bool CGameServer::SearchHostList(int num, Host * findHost)
 {
 	for (int i = 0; i < MAX_HOST_NUM; i++)
-		if (hostlist[i].number == num)
+		if (hostlist[i].number == num && posible_enter[i])
 		{
 			*findHost = hostlist[i];
+			posible_enter[i] = false;
 			return true;
 		}
 	return false;

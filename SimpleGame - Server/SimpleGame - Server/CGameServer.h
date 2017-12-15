@@ -35,6 +35,7 @@ public:
 	static void err_display(char * msg);
 	int recvn(SOCKET s, char * buf, int len, int flags);
 public:
+	static bool posible_enter[100];
 	void Operation();
 	static Host hostlist[100]; // 클라이언트 호스트의 정보를 저장 할 구조체
 	static int hostnum;

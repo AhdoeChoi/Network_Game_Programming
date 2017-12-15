@@ -545,3 +545,13 @@ void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수
 
 	//플레이어 총알 생성
 }
+
+bool SceneMgr::IsGameOver()
+{
+	if (m_Player.Shield.ihp < 0)
+		return true;
+	else if (m_Player.Shield.ihp < 0)
+		return true;
+	else
+		return false;
+}
