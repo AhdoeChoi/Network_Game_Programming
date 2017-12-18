@@ -16,6 +16,11 @@ using namespace std;
 #define TOPB 2
 #define TOPC 3
 
+#define RESULT_LOSE 1
+#define RESULT_WIN 2
+#define RESULT_PLAYING 3
+
+
 #define TOPA_BULLET 4
 #define TOPB_BULLET 5
 #define TOPC_Bullet 6

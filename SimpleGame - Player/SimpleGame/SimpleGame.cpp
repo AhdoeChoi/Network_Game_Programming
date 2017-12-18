@@ -38,14 +38,6 @@ void RenderScene(void)
 
 
 	//서버와 연결 (대기방 입장)
-
-	
-
-	
-
-
-
-
 	//gameFrameWork->m_pScene->BuildObject(); //빌딩배치
 
 	
@@ -68,7 +60,7 @@ void RenderScene(void)
 		//===============================================
 
 		//받아온 정보를 업데이트하고 그린다.
-		if (gameFrameWork->m_pScene->IsGameOver()  == 3)
+		if (gameFrameWork->m_pScene->IsGameOver()  == RESULT_PLAYING)
 		{
 			gameFrameWork->Update(elapsedTime);
 			gameFrameWork->Render();
@@ -77,15 +69,15 @@ void RenderScene(void)
 			cout << elapsedTime;
 			//===============================================
 		}
-		else if (gameFrameWork->m_pScene->IsGameOver() == 1)
+		else if (gameFrameWork->m_pScene->IsGameOver() == RESULT_LOSE)
 		{
-			gameFrameWork->m_pScene->m_renderer->DrawSolidRect(0, 0, 0, 50, 1, 0, 0, 1,0.5);
+			gameFrameWork->m_pScene->m_renderer->DrawTexturedRect(0, 0, 0, 400, 1, 1, 1, 1, gameFrameWork->m_pScene->GetTexture(8), 0.5);
 			
 		}
 	
-		else if (gameFrameWork->m_pScene->IsGameOver() == 2)
+		else if (gameFrameWork->m_pScene->IsGameOver() == RESULT_WIN)
 		{
-			gameFrameWork->m_pScene->m_renderer->DrawSolidRect(0, 0, 0, 50, 0, 1, 0, 1,0.5);
+			gameFrameWork->m_pScene->m_renderer->DrawTexturedRect(0, 0, 0, 400, 1, 1, 1, 1,gameFrameWork->m_pScene->GetTexture(7), 0.5);
 
 		}
 
@@ -170,33 +162,10 @@ void MouseInput(int button, int state, int x, int y)
 
 void KeyInput(unsigned char key, int x, int y)
 {
-	
-
 	if (key == 'c' || key == 'C')
 	{
 		iInputKey++;
 	}
-	/*if (key == 'w' || key == 'W')
-	{
-		gameFrameWork->m_pScene->shieldYpos += 5;
-	}
-
-	if (key == 's' || key == 'S')
-	{
-		gameFrameWork->m_pScene->shieldYpos -= 5;
-	}
-
-	if (key == 'a' || key == 'A')
-	{
-		gameFrameWork->m_pScene->shieldXpos -= 5;
-	}
-
-
-	if (key == 'd' || key == 'D')
-	{
-		gameFrameWork->m_pScene->shieldXpos += 5;
-	}*/
-
 	RenderScene();
 }
 
@@ -213,7 +182,7 @@ int main(int argc, char **argv)
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(0, 0);
 	glutInitWindowSize(500, 800);
-	glutCreateWindow("Game Software Engineering KPU");
+	glutCreateWindow("NetworkGame");
 
 	glewInit();
 	if (glewIsSupported("GL_VERSION_3_0"))
@@ -239,15 +208,9 @@ int main(int argc, char **argv)
 	
 	//////////////////////////////////////
 
-
-	
 	//소켓 초기화 해줄 곳
 
 	//gameFrameWork->client_socket, gameFrameWork->server_socket 초기화 해주겟지
-
-
-
-
 
 	///////////////////////////////////////
 

@@ -123,9 +123,6 @@ GameFrameWork::GameFrameWork()
 		}
 	}
 	
-
-	
-
 	//// closesocket()
 	//closesocket(listen_sock);
 
@@ -215,7 +212,6 @@ void GameFrameWork::EnterHostServer()
 
 
 	cout << ntohs(serveraddr.sin_port) << endl;
-	//if (retval == SOCKET_ERROR) err_quit("connect()");
 
 
 	cout << "연걸" << endl;
@@ -289,12 +285,6 @@ int	GameFrameWork::RecvFromOpponent(SOCKET *socket, Buildings building, int len,
 void GameFrameWork::ServerRunning()
 {
 	// 데이터 송수신 시작
-
-	/*for (int i = 0; i < 3; ++i)
-	{
-		m_Player.building[i] = (m_pScene->m_ppPlayerClass[i]->m_Building);
-	}
-	m_pScene->m_Player = m_Player;*/
 	m_Player = m_pScene->m_Player;
 
 	m_Player.Shield.Pos.fxpos = -m_pScene->shieldXpos;
@@ -306,9 +296,6 @@ void GameFrameWork::ServerRunning()
 
 
 }
-
-
-
 
 //---------------------------------------------------------------------------------
 void GameFrameWork::err_quit(char * msg)

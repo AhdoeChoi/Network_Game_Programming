@@ -1,2 +1,17 @@
-﻿  SimpleGame - Server.vcxproj -> C:\Users\ChoiAhDoe\Desktop\넷겜 깃 데탑 새로한거\SimpleGame - Server\x64\Release\SimpleGame - Server.exe
-  SimpleGame - Server.vcxproj -> C:\Users\ChoiAhDoe\Desktop\넷겜 깃 데탑 새로한거\SimpleGame - Server\x64\Release\SimpleGame - Server.pdb (Full PDB)
+﻿  stdafx.cpp
+stdafx.cpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\곽범식\desktop\network_game_programming\simplegame - server\simplegame - server\stdafx.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\곽범식\desktop\network_game_programming\simplegame - server\simplegame - server\targetver.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  CGameServer.cpp
+CGameServer.cpp(65): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\um\WinSock2.h(1848): note: 'inet_ntoa' 선언을 참조하십시오.
+CGameServer.cpp(110): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SimpleGameServer.cpp
+SimpleGameServer.cpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  코드를 생성하고 있습니다.
+  2 of 24 functions ( 8.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    8 functions had inline decision re-evaluated but remain unchanged
+  코드를 생성했습니다.
+  SimpleGame - Server.vcxproj -> C:\Users\곽범식\Desktop\Network_Game_Programming\SimpleGame - Server\x64\Release\SimpleGame - Server.exe
+  SimpleGame - Server.vcxproj -> C:\Users\곽범식\Desktop\Network_Game_Programming\SimpleGame - Server\x64\Release\SimpleGame - Server.pdb (Full PDB)

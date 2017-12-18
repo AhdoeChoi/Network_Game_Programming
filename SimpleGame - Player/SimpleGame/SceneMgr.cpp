@@ -22,7 +22,7 @@ SceneMgr::SceneMgr(int x, int y)
 	}
 	memset(&m_Enemy, 0, sizeof(m_Enemy));
 
-	for (int i = 0; i < 500; i++)
+	for (int i = 0; i < MAX_BULLET_COUNT; i++)
 		m_pbullet[i] = nullptr;
 
 
@@ -33,6 +33,8 @@ SceneMgr::SceneMgr(int x, int y)
 	m_textureid[4] = m_renderer->CreatePngTexture("Character_Player.png");
 	m_textureid[5] = m_renderer->CreatePngTexture("Character_Enemy.png");
 	m_textureid[6] = m_renderer->CreatePngTexture("Character_Bullet.png");
+	m_textureid[7] = m_renderer->CreatePngTexture("win.png");
+	m_textureid[8] = m_renderer->CreatePngTexture("lose.png");
 	map_id = m_renderer->CreatePngTexture("Map.png");
 
 	m_Player.Shield.Bullet.IsCoolTime = false;
@@ -162,15 +164,6 @@ void SceneMgr::Render()
 	);
 	m_renderer->DrawSolidRectGauge(m_Player.Shield.Pos.fxpos, m_Player.Shield.Pos.fypos + 20, m_Player.Shield.Pos.fzpos, 30, 5, 1, 0, 0, 1, (float)m_Player.Shield.ihp / 100.0f , 0);
 	//m_pPlayerClass->Render();
-
-
-
-	//m_renderer->DrawSolidRect(0/*x좌표*/,
-	//	0/*y좌표*/,
-	//	0/*z좌표*/,
-	//	10/*크기*/,
-	//	1/*red*/, 1/*green*/, 1/*blue*/, 1/*alpha*/);
-
 	//////////////////////////////////////
 
 	//적 클라이언트 정보 그려 m_pEnemy
@@ -317,12 +310,8 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 
 		pNewObject->m_Building.Info.Pos.fxpos = xpos;
 		pNewObject->m_Building.Info.Pos.fypos = -200;
-//<<<<<<< HEAD
-//=======
 
-//>>>>>>> c84b196718a2d6ae25bcee6ba025a0aff97e8c51
 		//여기를 좀더 자세히 채워야함
-//<<<<<<< HEAD
 		//pNewObject->m_Building.Bullet.
 //=======
 
@@ -333,7 +322,6 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 		if (keystate == 2)
 			pNewObject->m_Building.Info.istate = TOPC;
 
-//>>>>>>> 576b14d990433183edde7deaa4612d5d0c275d45
 
 		m_ppPlayerClass[m_iSetPlayerIndex] = pNewObject;
 		m_iSetPlayerIndex++;
@@ -343,13 +331,10 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 	for (int i = 0; i < m_iSetPlayerIndex; ++i)
 	{
 		if(m_ppPlayerClass[i]->m_Building.Info.istate == TOPA)
-			//m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 0, 0, 1);
 			m_renderer->DrawTexturedRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 1, 1, 1, m_textureid[0], 0);
 		if (m_ppPlayerClass[i]->m_Building.Info.istate == TOPB)
-			//m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 0, 1, 0, 1);
 			m_renderer->DrawTexturedRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 1, 1, 1, m_textureid[1], 0);
 		if (m_ppPlayerClass[i]->m_Building.Info.istate == TOPC)
-			//m_renderer->DrawSolidRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 0, 0, 1, 1);
 			m_renderer->DrawTexturedRect(m_ppPlayerClass[i]->m_Building.Info.Pos.fxpos, -300, 0, 50, 1, 1, 1, 1, m_textureid[2], 0);
 	}
 
@@ -362,11 +347,6 @@ void SceneMgr::BuildObject(int xpos, bool *BuildObjectFinish, int keystate)
 			m_Player.building[i] = (m_ppPlayerClass[i]->m_Building);
 		}
 	}
-
-
-	
-	//cout << *BuildObjectFinish << endl;
-
 }
 void SceneMgr::Animate()
 {
@@ -549,9 +529,9 @@ void SceneMgr::CreateBullet(buildings building) // 총알 생성 함수
 int SceneMgr::IsGameOver()
 {
 	if (m_Player.Shield.ihp < 0)
-		return 1;
+		return RESULT_LOSE;
 	else if (m_Enemy.Shield.ihp < 0)
-		return 2;
+		return RESULT_WIN;
 	else
-		return 3;
+		return RESULT_PLAYING;
 }

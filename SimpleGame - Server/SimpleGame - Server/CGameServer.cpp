@@ -79,22 +79,7 @@ void CGameServer::Operation()
 			}
 		}
 	}
-	
 
-
-	//switch (a)
-	//{
-	//case 1: //방 만들기
-	//	
-	//	break;
-	//case 2: // 방 참가
-	//	break;
-	//case 3: // 방 목록 보기
-	//	break;
-
-	//}
-
-	
 
 }
 
@@ -109,8 +94,6 @@ bool CGameServer::CreateHostServer(SOCKET s, SOCKADDR_IN client_addr)
 	memset(name, '0', sizeof(name));
 	// 방이름 recv 받아야함
 	
-
-
 	int sendRequest = 0;
 
 	for (int i = 0; i < MAX_HOST_NUM; i++)

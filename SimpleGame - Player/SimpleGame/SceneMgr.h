@@ -19,7 +19,7 @@ class SceneMgr
 private:
 	int					m_iSetPlayerIndex;
 	bool				m_bOverlap[3];
-	int					m_textureid[7];
+	int					m_textureid[10];
 	int					map_id;
 public:
 	Renderer			*m_renderer;
@@ -35,6 +35,7 @@ public:
 
 	int					shieldXpos = 0;
 	int					shieldYpos = 0;
+	int					GetTexture(int num) { return m_textureid[num]; }
 
 	float				total_frame;
 

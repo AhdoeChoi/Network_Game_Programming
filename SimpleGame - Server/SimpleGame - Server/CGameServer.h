@@ -35,9 +35,9 @@ public:
 	static void err_display(char * msg);
 	int recvn(SOCKET s, char * buf, int len, int flags);
 public:
-	static bool posible_enter[100];
+	static bool posible_enter[MAX_HOST_LIST];
 	void Operation();
-	static Host hostlist[100]; // 클라이언트 호스트의 정보를 저장 할 구조체
+	static Host hostlist[MAX_HOST_LIST]; // 클라이언트 호스트의 정보를 저장 할 구조체
 	static int hostnum;
 
 	bool MainServerConnect(SOCKET s); // s소켓으로 메인서버에 연결 시도, 성공시 true
